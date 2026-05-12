@@ -9,7 +9,7 @@ from flask import Flask, render_template, jsonify, request, session, redirect, u
 from apscheduler.schedulers.background import BackgroundScheduler
 
 DB_PATH = os.environ.get("DB_PATH", os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.db"))
-DASHBOARD_PASSWORD = os.environ.get("DASHBOARD_PASSWORD", "oag-intel-2026")
+DASHBOARD_PASSWORD = os.environ.get("DASHBOARD_PASSWORD", "oag-intel-2026").strip()
 
 
 def get_db():
@@ -74,7 +74,7 @@ def create_app():
     def login():
         error = None
         if request.method == "POST":
-            if request.form.get("password") == DASHBOARD_PASSWORD:
+            if request.form.get("password", "").strip() == DASHBOARD_PASSWORD:
                 session.permanent = True
                 session["logged_in"] = True
                 return redirect(url_for("dashboard"))
