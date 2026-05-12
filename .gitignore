@@ -1,0 +1,7 @@
+data.db
+server.log
+server.err
+__pycache__/
+*.pyc
+.env
+*.egg-info/
