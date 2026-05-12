@@ -2,11 +2,14 @@ import os
 import atexit
 import threading
 import sqlite3
+from datetime import timedelta
+from functools import wraps
 
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 from apscheduler.schedulers.background import BackgroundScheduler
 
 DB_PATH = os.environ.get("DB_PATH", os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.db"))
+DASHBOARD_PASSWORD = os.environ.get("DASHBOARD_PASSWORD", "oag-intel-2026")
 
 
 def get_db():
@@ -32,19 +35,28 @@ def init_db():
             UNIQUE(company, url, title)
         )
     """)
-    # Add category column to existing databases that predate this field
     try:
         c.execute("ALTER TABLE items ADD COLUMN category TEXT DEFAULT 'Press Coverage'")
     except Exception:
         pass
-    # Remove old website-change noise from any previous runs
     c.execute("DELETE FROM items WHERE source_type = 'website_change'")
     conn.commit()
     conn.close()
 
 
+def login_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if not session.get("logged_in"):
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return decorated
+
+
 def create_app():
     app = Flask(__name__)
+    app.secret_key = os.environ.get("SECRET_KEY", "oag-intel-secret-change-in-prod")
+    app.permanent_session_lifetime = timedelta(hours=12)
     init_db()
 
     from scraper import run_all_scrapers
@@ -56,11 +68,40 @@ def create_app():
 
     threading.Thread(target=run_all_scrapers, daemon=True).start()
 
+    # ── Auth routes ────────────────────────────────────────────────────────────
+
+    @app.route("/login", methods=["GET", "POST"])
+    def login():
+        error = None
+        if request.method == "POST":
+            if request.form.get("password") == DASHBOARD_PASSWORD:
+                session.permanent = True
+                session["logged_in"] = True
+                return redirect(url_for("dashboard"))
+            error = "Incorrect password — please try again."
+        return render_template("login.html", error=error)
+
+    @app.route("/logout")
+    def logout():
+        session.clear()
+        return redirect(url_for("login"))
+
+    # ── Main pages ─────────────────────────────────────────────────────────────
+
     @app.route("/")
+    @login_required
     def dashboard():
         return render_template("index.html")
 
+    @app.route("/playbook")
+    @login_required
+    def playbook():
+        return render_template("playbook.html")
+
+    # ── API ────────────────────────────────────────────────────────────────────
+
     @app.route("/api/items")
+    @login_required
     def get_items():
         company  = request.args.get("company")
         category = request.args.get("category")
@@ -86,6 +127,7 @@ def create_app():
         return jsonify(items)
 
     @app.route("/api/stats")
+    @login_required
     def get_stats():
         conn = get_db()
         c = conn.cursor()
@@ -97,6 +139,7 @@ def create_app():
         return jsonify({"counts": counts, "last_updated": row["last_updated"] if row else None})
 
     @app.route("/api/refresh", methods=["POST"])
+    @login_required
     def trigger_refresh():
         threading.Thread(target=run_all_scrapers, daemon=True).start()
         return jsonify({"status": "ok", "message": "Refresh started in background"})

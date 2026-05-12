@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OAG Competitor Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --near-black: #111310;
+    --yellow: #FFD602;
+    --warm-white: #F7F4EE;
+    --burgundy: #7A1F3D;
+    --light-grey: #D0CEC8;
+    --dark-grey: #555250;
+    --rose: #C4607A;
+    --amber: #C8963E;
+    --sage: #5C7A65;
+    --slate: #5C6E7A;
+  }
+
+  body { font-family: 'Inter', sans-serif; background: var(--warm-white); color: var(--near-black); font-size: 13px; line-height: 1.5; }
+
+  /* ── Site nav (sits above the OAG header) ── */
+  .site-nav {
+    background: #0a0c09;
+    padding: 0 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #1f2118;
+  }
+  .site-nav-links { display: flex; }
+  .site-nav-links a {
+    display: block;
+    padding: 10px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s;
+  }
+  .site-nav-links a:hover { color: #fff; }
+  .site-nav-links a.active { color: var(--yellow); border-bottom-color: var(--yellow); }
+  .site-nav-right { display: flex; align-items: center; gap: 16px; }
+  .site-nav-right a { font-size: 11px; color: #444; text-decoration: none; }
+  .site-nav-right a:hover { color: #888; }
+
+  /* ── OAG header ── */
+  .header { background: var(--near-black); padding: 24px 36px 20px; display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 3px solid var(--yellow); }
+  .logo-text { font-size: 20px; font-weight: 300; color: #fff; letter-spacing: 0.08em; }
+  .logo-text span { color: var(--yellow); font-weight: 600; }
+  .doc-title { font-size: 10px; color: var(--light-grey); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px; }
+  .header-meta { text-align: right; }
+  .header-meta p { color: var(--light-grey); font-size: 11px; line-height: 1.8; }
+  .tag { display: inline-block; background: var(--burgundy); color: #fff; font-size: 10px; padding: 2px 8px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+
+  /* ── Intro strip ── */
+  .intro-strip { background: var(--yellow); padding: 10px 36px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .intro-strip p { font-size: 11px; color: var(--near-black); font-weight: 600; }
+  .intro-strip .note { font-weight: 400; opacity: 0.75; }
+  .intro-strip .div { width: 1px; height: 12px; background: var(--near-black); opacity: 0.3; }
+
+  /* ── Strengths bar ── */
+  .strengths-bar { background: var(--near-black); padding: 16px 36px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .str-item { border-left: 2px solid var(--yellow); padding-left: 10px; }
+  .str-label { font-size: 9px; color: var(--light-grey); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
+  .str-val { font-size: 11px; color: #fff; font-weight: 600; line-height: 1.4; }
+
+  /* ── Proof strip ── */
+  .proof-strip { background: var(--burgundy); padding: 14px 36px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .proof-item { text-align: center; border-right: 1px solid rgba(255,255,255,0.15); padding: 0 8px; }
+  .proof-item:last-child { border-right: none; }
+  .proof-num { font-size: 22px; font-weight: 300; color: var(--yellow); line-height: 1; margin-bottom: 3px; }
+  .proof-desc { font-size: 10px; color: rgba(255,255,255,0.8); line-height: 1.4; }
+
+  /* ── Tab nav ── */
+  .tab-nav { background: var(--near-black); padding: 0 36px; display: flex; gap: 2px; overflow-x: auto; border-bottom: 2px solid var(--yellow); }
+  .tab-btn { background: transparent; border: none; color: var(--light-grey); padding: 12px 16px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; white-space: nowrap; transition: all 0.15s; border-bottom: 3px solid transparent; margin-bottom: -2px; font-family: 'Inter', sans-serif; }
+  .tab-btn:hover { color: #fff; }
+  .tab-btn.active { color: var(--yellow); border-bottom-color: var(--yellow); }
+  .tab-btn .threat { display: inline-block; font-size: 9px; padding: 1px 6px; border-radius: 2px; margin-left: 6px; font-weight: 600; letter-spacing: 0.06em; }
+  .t-high { background: var(--burgundy); color: #fff; }
+  .t-med { background: var(--amber); color: var(--near-black); }
+  .t-low { background: var(--sage); color: #fff; }
+  .t-watch { background: var(--slate); color: #fff; }
+
+  /* ── Tab content ── */
+  .tab-content { display: none; padding: 28px 36px; }
+  .tab-content.active { display: block; }
+
+  /* ── Overview grid ── */
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+
+  /* ── Competitor card ── */
+  .comp-card { background: #fff; border: 1px solid var(--light-grey); overflow: hidden; }
+  .comp-card-header { background: var(--near-black); padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; }
+  .comp-card-header .name { font-size: 14px; font-weight: 600; color: #fff; }
+  .comp-card-header .meta { font-size: 10px; color: var(--light-grey); margin-top: 2px; }
+  .badge { font-size: 9px; font-weight: 600; padding: 3px 8px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .badge-high { background: var(--burgundy); color: #fff; }
+  .badge-med { background: var(--amber); color: var(--near-black); }
+  .badge-low { background: var(--sage); color: #fff; }
+  .badge-watch { background: var(--slate); color: #fff; }
+  .comp-card-body { padding: 14px 18px; }
+
+  .oneliner { background: var(--near-black); padding: 10px 14px; margin-bottom: 12px; }
+  .oneliner .ol-label { font-size: 9px; color: var(--yellow); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+  .oneliner p { font-size: 11px; color: var(--light-grey); line-height: 1.6; }
+  .oneliner p strong { color: #fff; font-weight: 600; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px; }
+  .col-title { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--dark-grey); margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid var(--light-grey); }
+  ul.win-list, ul.lose-list { list-style: none; }
+  ul.win-list li, ul.lose-list li { font-size: 11px; padding: 3px 0 3px 13px; position: relative; line-height: 1.5; border-bottom: 1px solid rgba(0,0,0,0.04); }
+  ul.win-list li:last-child, ul.lose-list li:last-child { border-bottom: none; }
+  ul.win-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--sage); }
+  ul.lose-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--rose); }
+
+  /* ── Detail tab layout ── */
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .section-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--dark-grey); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--light-grey); }
+
+  /* ── Objection table ── */
+  .obj-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+  .obj-table tr { border-bottom: 1px solid var(--light-grey); }
+  .obj-table tr:last-child { border-bottom: none; }
+  .obj-q { background: var(--warm-white); padding: 9px 12px; font-size: 11px; font-weight: 600; color: var(--near-black); width: 36%; vertical-align: top; border-right: 1px solid var(--light-grey); }
+  .obj-a { padding: 9px 12px; font-size: 11px; color: var(--near-black); line-height: 1.6; background: #fff; vertical-align: top; }
+  .obj-a strong { color: var(--burgundy); font-weight: 600; }
+
+  /* ── Talk track ── */
+  .talk-track { background: #fff; border: 1px solid var(--light-grey); border-left: 3px solid var(--yellow); padding: 12px 14px; margin-bottom: 10px; }
+  .tt-scenario { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--dark-grey); margin-bottom: 6px; }
+  .tt-text { font-size: 11px; color: var(--near-black); line-height: 1.7; font-style: italic; }
+
+  /* ── Proof block ── */
+  .proof-block { background: var(--near-black); padding: 14px 16px; margin-bottom: 10px; }
+  .pb-label { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--yellow); margin-bottom: 8px; }
+  .pb-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .pb-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .pb-bullet { color: var(--yellow); font-size: 14px; line-height: 1; flex-shrink: 0; margin-top: 1px; }
+  .pb-text { font-size: 11px; color: var(--light-grey); line-height: 1.5; }
+  .pb-text strong { color: #fff; }
+  .pb-link { display: inline-block; margin-top: 3px; font-size: 10px; color: var(--yellow); text-decoration: none; opacity: 0.8; }
+  .pb-link:hover { opacity: 1; }
+
+  /* ── Intel box ── */
+  .intel-box { background: var(--warm-white); border: 1px solid var(--light-grey); padding: 12px 14px; margin-bottom: 10px; }
+  .intel-label { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--dark-grey); margin-bottom: 6px; }
+  .intel-text { font-size: 11px; color: var(--near-black); line-height: 1.6; }
+
+  /* ── Compare table ── */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 20px; }
+  .compare-table th { background: var(--near-black); color: #fff; padding: 9px 12px; text-align: left; font-weight: 600; font-size: 10px; letter-spacing: 0.04em; }
+  .compare-table th.oag { background: var(--burgundy); }
+  .compare-table td { padding: 8px 12px; border-bottom: 1px solid var(--light-grey); vertical-align: top; line-height: 1.5; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td:first-child { font-weight: 600; font-size: 10px; color: var(--dark-grey); letter-spacing: 0.04em; background: var(--warm-white); width: 18%; }
+  .compare-table tr:nth-child(even) td:not(:first-child) { background: rgba(247,244,238,0.5); }
+  .win { color: var(--sage); font-weight: 700; }
+  .lose { color: var(--rose); font-weight: 700; }
+  .neut { color: var(--dark-grey); }
+
+  /* ── Bottom strip ── */
+  .bottom-strip { background: var(--near-black); padding: 14px 36px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .bs-item .bs-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--yellow); margin-bottom: 5px; }
+  .bs-item p { font-size: 11px; color: var(--light-grey); line-height: 1.6; }
+
+  /* ── Footer ── */
+  .footer { background: #0a0c09; padding: 12px 36px; display: flex; justify-content: space-between; align-items: center; }
+  .footer p { font-size: 10px; color: var(--dark-grey); }
+  .footer .fn { color: var(--light-grey); font-weight: 600; font-size: 11px; }
+
+  /* ── Warning banner ── */
+  .iata-warning { background: var(--amber); padding: 10px 18px; margin-bottom: 12px; display: flex; gap: 10px; align-items: flex-start; }
+  .iata-warning .iw-icon { font-size: 16px; flex-shrink: 0; }
+  .iata-warning .iw-text { font-size: 11px; color: var(--near-black); line-height: 1.6; font-weight: 600; }
+  .iata-warning .iw-text span { font-weight: 400; }
+</style>
+</head>
+<body>
+
+<!-- Site nav -->
+<div class="site-nav">
+  <div class="site-nav-links">
+    <a href="/">Live Intel Feed</a>
+    <a href="/playbook" class="active">Competitor Playbook</a>
+  </div>
+  <div class="site-nav-right">
+    <a href="/logout">Sign out</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <div class="logo-text"><span>OAG</span></div>
+    <div class="doc-title">Competitor Intelligence Sheet v2 — May 2026</div>
+  </div>
+  <div class="header-meta">
+    <span class="tag">Internal use only</span>
+    <p style="margin-top:6px;">Pre-call prep and live deal support</p>
+    <p>Intel updates: Competitive Intelligence channel in Teams</p>
+  </div>
+</div>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <p>7 competitors covered across schedules, status, pricing and demand intelligence</p>
+  <div class="div"></div>
+  <p class="note">Use talk tracks verbatim or adapt to your own voice</p>
+  <div class="div"></div>
+  <p class="note">Clozd and Gong link placeholders marked throughout — add as intel becomes available</p>
+</div>
+
+<!-- OAG STRENGTHS BAR -->
+<div class="strengths-bar">
+  <div class="str-item"><div class="str-label">Schedules</div><div class="str-val">400k+ daily updates · 24-month forward · 15-min refresh</div></div>
+  <div class="str-item"><div class="str-label">Pricing data</div><div class="str-val">86% airline-direct give-to-get · 98% complete · 98.4% timely</div></div>
+  <div class="str-item"><div class="str-label">Flight status</div><div class="str-val">5 flight states · 865 sources · top bake-off metrics won</div></div>
+  <div class="str-item"><div class="str-label">Cloud onboarding</div><div class="str-val">24-48 hrs Snowflake vs Cirium's 6-8 weeks</div></div>
+  <div class="str-item"><div class="str-label">Only OAG offers</div><div class="str-val">Schedules + Demand + Pricing + Status in one platform</div></div>
+</div>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-item"><div class="proof-num">9 from 11</div><div class="proof-desc">key performance metrics beaten vs Cirium in independent Jan-Feb 2026 bake-off across 39,042 flights</div></div>
+  <div class="proof-item"><div class="proof-num">9.3 min</div><div class="proof-desc">faster detecting arrival time changes vs Cirium · OAG delivers first 67% of the time</div></div>
+  <div class="proof-item"><div class="proof-num">12×</div><div class="proof-desc">more likely to detect runway touchdown first vs Cirium (59% vs 5%)</div></div>
+  <div class="proof-item"><div class="proof-num">86%</div><div class="proof-desc">pricing data sourced direct from airlines via contractual give-to-get. RateGain: 20%. 3Victors: ~10%</div></div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('overview', this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('cirium', this)">Cirium <span class="threat t-high">Primary</span></button>
+  <button class="tab-btn" onclick="showTab('iata', this)">IATA SDEP <span class="threat t-watch">Watch</span></button>
+  <button class="tab-btn" onclick="showTab('rategain', this)">RateGain <span class="threat t-med">Pricing</span></button>
+  <button class="tab-btn" onclick="showTab('3victors', this)">3Victors / ATPCO <span class="threat t-med">Pricing</span></button>
+  <button class="tab-btn" onclick="showTab('aggregate', this)">Aggregate Intelligence <span class="threat t-low">Niche</span></button>
+  <button class="tab-btn" onclick="showTab('flightaware', this)">FlightAware <span class="threat t-low">Status</span></button>
+  <button class="tab-btn" onclick="showTab('fr24', this)">Flightradar24 <span class="threat t-low">Consumer</span></button>
+  <button class="tab-btn" onclick="showTab('amadeus', this)">Amadeus / ForwardKeys <span class="threat t-med">Platform</span></button>
+</div>
+
+<!-- OVERVIEW TAB -->
+<div id="tab-overview" class="tab-content active">
+  <div style="margin-bottom:20px;">
+    <div class="section-label">Head-to-head snapshot — all competitors</div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th class="oag">OAG</th>
+          <th>Cirium</th>
+          <th>IATA SDEP</th>
+          <th>RateGain</th>
+          <th>3Victors</th>
+          <th>Aggregate Intel</th>
+          <th>FlightAware</th>
+          <th>Flightradar24</th>
+          <th>Amadeus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Schedules data</td>
+          <td><span class="win">✓</span> Gold standard · 400k+ daily · 24m fwd</td>
+          <td><span class="win">✓</span> Strong · 280k · 12m fwd</td>
+          <td><span class="neut">~</span> Free · airline-governed · basic output · no analytics</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not a focus</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="neut">~</span> Partial · via Amadeus schedules + ForwardKeys · no primary product</td>
+        </tr>
+        <tr>
+          <td>Real-time status</td>
+          <td><span class="win">✓</span> 5 states · 865 sources · 9 from 11 bake-off metrics</td>
+          <td><span class="neut">~</span> 3 states · better gate coverage</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="win">✓</span> Strong · ADS-B · predictive ETAs</td>
+          <td><span class="win">✓</span> Real-time positional tracking</td>
+          <td><span class="neut">~</span> Airport Insights platform · limited standalone status API</td>
+        </tr>
+        <tr>
+          <td>Pricing / fares</td>
+          <td><span class="win">✓</span> 86% airline-direct · 4 trillion price points</td>
+          <td><span class="lose">✗</span> No meaningful pricing</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="neut">~</span> 20% direct · OTA-heavy scraping</td>
+          <td><span class="neut">~</span> ~10% direct · GDS + scraped</td>
+          <td><span class="neut">~</span> 100% scraped · no airline relationships</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="neut">~</span> MIDT public fares · indirect channel only · not a pricing specialist</td>
+        </tr>
+        <tr>
+          <td>Demand / bookings</td>
+          <td><span class="win">✓</span> Passenger booking data included</td>
+          <td><span class="neut">~</span> MIDT via Travelport · limited</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="neut">~</span> Search intent signals only</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="win">✓</span> MIDT bookings data · one of the strongest demand datasets in market</td>
+        </tr>
+        <tr>
+          <td>Cloud / Snowflake</td>
+          <td><span class="win">✓</span> 24-48 hr onboarding</td>
+          <td><span class="neut">~</span> Available · 6-8 weeks</td>
+          <td><span class="neut">~</span> Cloud tables available · no analytics layer</td>
+          <td><span class="win">✓</span> Google Cloud · 48-72 hr</td>
+          <td><span class="win">✓</span> API-driven · AWS</td>
+          <td><span class="win">✓</span> API-first · fast onboard</td>
+          <td><span class="win">✓</span> API-first · enterprise grade</td>
+          <td><span class="neut">~</span> API available</td>
+          <td><span class="win">✓</span> Multi-cloud: Azure + Google Cloud · Snowflake direct share</td>
+        </tr>
+        <tr>
+          <td>Ancillary data</td>
+          <td><span class="neut">~</span> Gap — in development</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="neut">~</span> Some coverage</td>
+          <td><span class="lose">✗</span> Limited</td>
+          <td><span class="win">✓</span> Best in market · bags/seats/bundles</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not a core product</td>
+        </tr>
+        <tr>
+          <td>Fleet / aircraft data</td>
+          <td><span class="neut">~</span> Via ch-aviation partnership</td>
+          <td><span class="win">✓</span> Best in market · Ascend valuations</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Limited</td>
+          <td><span class="lose">✗</span> Limited</td>
+          <td><span class="lose">✗</span> Not offered</td>
+        </tr>
+        <tr>
+          <td>Emissions data</td>
+          <td><span class="neut">~</span> Available · not ISAE 3000 certified</td>
+          <td><span class="win">✓</span> ISAE 3000 certified · audit-ready</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+          <td><span class="lose">✗</span> Not offered</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bottom-strip">
+    <div class="bs-item"><div class="bs-label">Acknowledge our gaps honestly</div><p>Gate coverage (56% vs Cirium 69%), emissions certification, ancillary data, and Analyser UI maturity are real. Own them — it builds trust. Then pivot to where OAG genuinely wins.</p></div>
+    <div class="bs-item"><div class="bs-label">The question that wins most deals</div><p>"What decisions are you trying to make with this data?" Positional tracking is a different job to commercial intelligence. Most competitors cover one layer. OAG covers the full stack.</p></div>
+    <div class="bs-item"><div class="bs-label">The one thing no competitor can say</div><p>OAG is the only provider with schedules + demand + pricing + status in one platform. Cirium has no pricing. FlightAware and FR24 have no commercial layer. IATA SDEP has no analytics.</p></div>
+  </div>
+</div>
+
+<!-- CIRIUM TAB -->
+<div id="tab-cirium" class="tab-content">
+  <div class="detail-grid">
+    <div class="detail-left">
+      <div class="oneliner" style="margin-bottom:16px;">
+        <div class="ol-label">One-line positioning</div>
+        <p>"OAG beats Cirium <strong>9 from 11 status metrics</strong>, processes <strong>400k vs 280k daily schedule updates</strong>, onboards in <strong>24-48 hrs vs 6-8 weeks</strong>, and is the <strong>only provider with schedules + demand + pricing unified</strong>. Cirium has no pricing proposition at all."</p>
+      </div>
+      <div class="section-label">Where we win vs Cirium</div>
+      <ul class="win-list" style="margin-bottom:16px;">
+        <li>Pricing intelligence — Cirium has none, full stop</li>
+        <li>Unified schedules + status in a single API and data model</li>
+        <li>5 flight states tracked vs their 3 — they don't offer InGate status</li>
+        <li>400k+ daily schedule updates vs 280k · 24-month forward window vs 12</li>
+        <li>Snowflake onboarding 24-48 hrs vs 6-8 weeks</li>
+        <li>OAG writes the SSIM standard — Cirium just uses it</li>
+        <li>12× more likely to detect runway touchdown first (59% vs 5%)</li>
+        <li>Arrive change detection: OAG faster 67% of the time by 9.3 min median</li>
+        <li>1,500+ customers across 10+ verticals vs Cirium's concentration in NAM/finance</li>
+      </ul>
+      <div class="section-label">Where Cirium wins — be honest</div>
+      <ul class="lose-list" style="margin-bottom:16px;">
+        <li>Gate coverage: 69% vs our 56% departure gates</li>
+        <li>Fleet valuations and Ascend consultancy — best in market</li>
+        <li>ISAE 3000 certified emissions — audit-ready for ESG reporting</li>
+        <li>DIIO Mi dominance in North American airports — high switching cost</li>
+        <li>Multi-cloud: Snowflake + AWS + GCP vs OAG's Snowflake + Azure</li>
+        <li>ADS-B partnership with FR24 and Aireon — strong positional coverage</li>
+        <li>49% share of voice in aviation data media coverage</li>
+      </ul>
+      <div class="section-label">Recent Cirium moves to know</div>
+      <div class="intel-box">
+        <div class="intel-label">Their stated direction</div>
+        <div class="intel-text">Pushing AI-powered OTP improvement tools. Building on fleet/aircraft data strength for operational use cases. Cirium Ascend named Appraiser of the Year 2026. Next-gen DIIO tools launched. Sky Stream push API for real-time status. Multi-cloud delivery expanding. IATA SDEP is a separate risk to both OAG and Cirium supply chains.</div>
+      </div>
+    </div>
+    <div class="detail-right">
+      <div class="section-label">Handle the objections</div>
+      <table class="obj-table">
+        <tr><td class="obj-q">"We already use Cirium"</td><td class="obj-a">Find the gap. <strong>Do they have pricing data? Unified lifecycle visibility?</strong> Cirium cannot join their schedules and status datasets — you can. Ask: "Where is the friction in your current setup?" That question does the work.</td></tr>
+        <tr><td class="obj-q">"Cirium has better gate data"</td><td class="obj-a">Acknowledge it and pivot. <strong>"We won 9 from 11 performance metrics. We're 12× faster at touchdown detection, 9 minutes faster on arrival changes. Is gate coverage your single biggest priority, or is overall accuracy and speed what drives the decision?"</strong></td></tr>
+        <tr><td class="obj-q">"We need certified emissions"</td><td class="obj-a"><strong>Be honest — Cirium wins this one.</strong> "If audited ESG compliance is the primary requirement, Cirium's ISAE 3000 certification is the right call for that specific need. Most teams use OAG for commercial intelligence and supplement for ESG filing."</td></tr>
+        <tr><td class="obj-q">"DIIO Mi is embedded in our team"</td><td class="obj-a"><strong>Don't fight the switching cost — acknowledge it.</strong> "That inertia is real and I won't pretend switching is easy. But what's not working? If there are genuine gaps in pricing, lifecycle visibility, or cloud delivery speed, those are worth exploring."</td></tr>
+        <tr><td class="obj-q">"Cirium has more cloud options"</td><td class="obj-a">"They support GCP as well as Snowflake and AWS, true. Our Snowflake delivery is faster to onboard and works with the majority of modern data stacks. If GCP is a hard requirement, that is worth flagging early — but most deals are not decided on cloud provider alone."</td></tr>
+      </table>
+      <div class="section-label">Talk tracks — pricing gap</div>
+      <div class="talk-track"><div class="tt-scenario">When pricing intelligence is in scope</div><div class="tt-text">"I understand you are evaluating Cirium. They are strong on the operational side — fleet data, emissions — but when it comes to pricing intelligence, there is really no comparison. Cirium does not have a fare data proposition. If you need to understand competitive fares, pricing trends, or do revenue management analysis, you will need to source that elsewhere. With our Infare acquisition, we give you schedules and the most comprehensive fare intelligence in the market, all in one place."</div></div>
+      <div class="talk-track"><div class="tt-scenario">When unified lifecycle visibility matters</div><div class="tt-text">"One thing that consistently comes up with Cirium customers is the challenge of joining their schedules and status data. They run separate API families — FlightStats for status, Cirium Sky for schedules — with different authentication, different SDKs, different documentation. With OAG, you get one API, one authentication model, one data structure that covers the entire flight lifecycle from the moment it is scheduled all the way through to touchdown and gate arrival. We call it publish-to-touchdown visibility. Cirium simply cannot match that."</div></div>
+      <div class="section-label">Proof points</div>
+      <div class="proof-block">
+        <div class="pb-label">Use these in calls</div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text"><strong>Air India chose OAG over Cirium</strong> stating OAG arrival times were more accurate. "For the same dataset comparing 100 departures, there were huge discrepancies with Cirium." <a href="#" class="pb-link">→ Clozd report [add link]</a></div></div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text"><strong>Independent Jan-Feb 2026 trial across 39,042 flights:</strong> OAG won 9 from 11 status metrics vs Cirium FlightStats. <a href="#" class="pb-link">→ Full report [add link]</a></div></div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text"><strong>Blue Skies Consulting</strong> chose OAG over Cirium for Traffic Analyser, citing best value for required data. <a href="#" class="pb-link">→ Clozd report [add link]</a></div></div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text">47.8% of flights — OAG delivered gate information 30+ minutes earlier than Cirium.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IATA SDEP TAB -->
+<div id="tab-iata" class="tab-content">
+  <div class="iata-warning"><div class="iw-icon">⚠</div><div class="iw-text">New and growing threat to OAG's core schedules supply relationships. <span>IATA launched August 2025. Already 150+ airlines signed including BA, Lufthansa, Emirates, Air India, Turkish, Qantas, Delta, United. Free to contributing airlines. Treat this as a strategic watch item — flag to your SE and manager if it comes up in any airline conversation.</span></div></div>
+  <div class="detail-grid">
+    <div class="detail-left">
+      <div class="oneliner" style="margin-bottom:16px;"><div class="ol-label">One-line positioning</div><p>"IATA's SDEP is an <strong>industry governance initiative, not a commercial analytics platform</strong>. It gives airlines a free backup for raw schedule data, but it has no status, no demand, no pricing, no analytics layer, and no operational intelligence. OAG is what airlines need when they want to <strong>actually do something with the data</strong>."</p></div>
+      <div class="section-label">What IATA SDEP actually is</div>
+      <div class="intel-box"><div class="intel-label">Program overview</div><div class="intel-text">Launched August 2025. Industry-owned, airline-governed schedule and MCT database. Free give-to-get model — airlines share their schedules, receive the combined database back. Delivers global SSIM files, flat files, or cloud-native tables via SFTP. Positioned explicitly as "an industry initiative, not a commercial solution." No analytics, no real-time status, no pricing, no demand data, no visualisation tools.</div></div>
+      <div class="section-label">The real threat — supply, not demand</div>
+      <div class="intel-box"><div class="intel-label">Where the risk sits</div><div class="intel-text">The threat is not that airlines will buy SDEP instead of OAG. They cannot — SDEP does not replace OAG's products. The risk is that SDEP reduces airline dependence on commercial aggregators for raw schedule data over time, potentially weakening OAG's schedule supply relationships. Airlines may also use SDEP language to negotiate harder on schedule data pricing.</div></div>
+      <div class="section-label">Where OAG wins vs IATA SDEP</div>
+      <ul class="win-list" style="margin-bottom:16px;">
+        <li>Full commercial analytics platform — SDEP has none</li>
+        <li>Real-time status tracking — SDEP has none</li>
+        <li>Pricing and demand data — SDEP has none</li>
+        <li>Cloud delivery with analytics tools (Analyser, APIs) — SDEP only delivers raw files</li>
+        <li>90+ years of quality assurance and processing depth</li>
+        <li>24-month forward schedules vs basic SSIM output from SDEP</li>
+        <li>15-minute refresh cycle vs SDEP's static file distribution</li>
+      </ul>
+      <div class="section-label">Where IATA SDEP has leverage</div>
+      <ul class="lose-list" style="margin-bottom:16px;">
+        <li>Free to participating airlines — creates a price pressure argument</li>
+        <li>Industry governance — hard to argue against "airline-owned" positioning</li>
+        <li>150+ airlines already signed — broad and growing participation</li>
+        <li>IATA brand authority — trusted by default in airline procurement</li>
+      </ul>
+    </div>
+    <div class="detail-right">
+      <div class="section-label">Handle the objections</div>
+      <table class="obj-table">
+        <tr><td class="obj-q">"IATA is giving this away for free"</td><td class="obj-a"><strong>Clarify what free actually means.</strong> "IATA's program gives you raw schedule files. That is a backup, not a product. It has no analytics, no status tracking, no pricing data, no query tools. OAG takes that raw material and turns it into something you can actually make commercial decisions with."</td></tr>
+        <tr><td class="obj-q">"We want to reduce dependence on data aggregators"</td><td class="obj-a">"That is understandable. But aggregator dependence and commercial intelligence are different things. OAG is not just an aggregator — we enrich, validate, and deliver actionable intelligence at a depth and speed that SDEP simply does not match."</td></tr>
+        <tr><td class="obj-q">"IATA has airline governance — that matters to us"</td><td class="obj-a">"OAG has a formal IATA partnership and processes data to IATA's own standards. We are also the organisation that defined the SSIM format that SDEP is built on. Our relationship with IATA is collaborative, not competitive."</td></tr>
+        <tr><td class="obj-q">"We are already signed up to SDEP"</td><td class="obj-a"><strong>This is fine — they are not mutually exclusive.</strong> "SDEP and OAG solve different problems. SDEP gives you a raw schedule backup. OAG gives you the intelligence layer on top — status, demand, pricing, and analytics. Most airlines will use both."</td></tr>
+      </table>
+      <div class="section-label">Talk track — when SDEP comes up in an airline deal</div>
+      <div class="talk-track"><div class="tt-scenario">Airline raises SDEP as an alternative or negotiating lever</div><div class="tt-text">"IATA's initiative is a sensible industry governance move and we fully support airlines having more control over their data. But SDEP gives you an aggregated, airline-contributed schedule file for free — it is a raw data backup with basic output formats. It has no real-time status, no pricing intelligence, no demand data, no analytics tooling, and no cloud querying capability. OAG takes schedule data and combines it with status, pricing, and demand to give you a decision-ready intelligence layer."</div></div>
+      <div class="section-label">Internal note — escalate if this comes up</div>
+      <div class="proof-block">
+        <div class="pb-label">Flag to your SE and manager</div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text">If IATA SDEP comes up in a live deal, <strong>flag to Mo, Maria, Jade, Seth or Seb</strong> before your next call.</div></div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text">Airlines signed up include many current OAG customers — BA, Lufthansa, Emirates, Air India, Turkish, Qantas, Delta, United. SDEP participation does not mean they are leaving OAG.</div></div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text">The risk is to OAG's schedule supply relationships and pricing leverage over time, not to our analytics or status products.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RATEGAIN TAB -->
+<div id="tab-rategain" class="tab-content">
+  <div class="detail-grid">
+    <div class="detail-left">
+      <div class="oneliner" style="margin-bottom:16px;"><div class="ol-label">One-line positioning</div><p>"OAG sources <strong>86% of pricing data direct from airlines</strong> via contractual give-to-get. RateGain gets 20% direct — the rest is web-scraped OTA data. <strong>Multiple airlines left RateGain and came back to OAG</strong> citing data quality issues. We are the only platform that pairs pricing with schedules, demand, and status."</p></div>
+      <div class="section-label">Where we win</div>
+      <ul class="win-list" style="margin-bottom:16px;">
+        <li>86% airline-direct data vs their 20%</li>
+        <li>2× coverage — 1,500+ websites vs ~700, 500+ airlines vs ~200</li>
+        <li>10+ years of historical pricing data vs their 365 days</li>
+        <li>Full supply + demand + pricing + status stack — they only do pricing</li>
+        <li>Airlines confirm OAG support is more responsive and airline-focused</li>
+        <li>Eurowings, Allegiant, Pegasus — all left RateGain and returned to OAG</li>
+        <li>OAG is airline-native. RateGain's core business is hotels</li>
+      </ul>
+      <div class="section-label">Where RateGain wins — be honest</div>
+      <ul class="lose-list" style="margin-bottom:16px;">
+        <li>Up to 2.5× cheaper — a real barrier for cost-sensitive airlines</li>
+        <li>48-72 hr onboarding with modern, clean UI</li>
+        <li>AI Route Digest launched Q1 2025 — fast feature velocity</li>
+        <li>Hotel OTA relationships give low-cost OTA data access</li>
+        <li>RMS integrations: Accelya airRM and Maxamation Aviator</li>
+        <li>Adara acquisition (2022) adds traveller intent and demand signals</li>
+      </ul>
+      <div class="section-label">Their recent moves</div>
+      <div class="intel-box"><div class="intel-label">What RateGain has shipped</div><div class="intel-text">AI-powered Route Digest launched Q1 2025 — automated daily route performance summary for execs. Market Sense automated alerts for dynamic price changes. Major analytical suite upgrade March 2025. Google Cloud / BigQuery infrastructure. Their feature velocity is faster than ours right now — be honest about that when it comes up.</div></div>
+    </div>
+    <div class="detail-right">
+      <div class="section-label">Handle the objections</div>
+      <table class="obj-table">
+        <tr><td class="obj-q">"RateGain is much cheaper"</td><td class="obj-a"><strong>They are cheaper because they cut corners on sourcing.</strong> "RateGain gets OTA data bundled into their hotel contracts — it is cheap for them to collect. We source more than 80% of our data directly from airlines through contractual agreements. The question is whether making million-dollar pricing decisions on scraped data is worth the risk."</td></tr>
+        <tr><td class="obj-q">"Their data quality is fine for us"</td><td class="obj-a"><strong>Ask what they are comparing against.</strong> "Eurowings, Allegiant, and Pegasus all made the same assumption and then switched. OTA prices are not airline prices — they are what OTAs choose to display. That gap matters significantly at scale."</td></tr>
+        <tr><td class="obj-q">"They have a faster, cleaner UI"</td><td class="obj-a">"Their UI is genuinely good and their onboarding is fast. We are working on that. But a clean interface on top of scraped data still gives you scraped data. What matters most — a slick dashboard or data you can trust when defending a decision to leadership?"</td></tr>
+        <tr><td class="obj-q">"Their AI Digest is impressive"</td><td class="obj-a">"It is a good feature — an automated summary layer on top of their pricing data. But the summary is only as good as the data underneath it. Our data quality foundation gives you more reliable insight even if our analytical features are catching up."</td></tr>
+      </table>
+      <div class="section-label">Talk tracks</div>
+      <div class="talk-track"><div class="tt-scenario">When data quality is in question</div><div class="tt-text">"More than 80% of our data is sourced directly from airlines through contractual agreements — actual airline.com pricing. RateGain only gets 20% direct from airlines and relies on web-scraped OTA data. Multiple airlines have left RateGain and came to us specifically citing data quality concerns. OTA data does not equal airline.com data — it is what OTAs choose to display. When you are making million-dollar pricing decisions, do you trust airline-direct data or OTA-displayed prices?"</div></div>
+      <div class="section-label">Proof points</div>
+      <div class="proof-block">
+        <div class="pb-label">Use these in calls</div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text"><strong>Eurowings, Allegiant, Pegasus</strong> — all left RateGain citing data quality issues and returned to OAG. <a href="#" class="pb-link">→ Clozd / Gong recordings [add links]</a></div></div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text"><strong>Finnair</strong> — 10+ years with OAG. Long-term anchor customer.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3VICTORS TAB -->
+<div id="tab-3victors" class="tab-content">
+  <div class="detail-grid">
+    <div class="detail-left">
+      <div class="oneliner" style="margin-bottom:16px;"><div class="ol-label">One-line positioning</div><p>"3Victors has compelling AI technology but <strong>only ~10% of their data is airline-direct</strong>. Since ATPCO acquired them in December 2023, <strong>innovation has visibly stalled with no meaningful product launches</strong>. OAG delivers 86% airline-direct data, 4 trillion price points, and proven reliability across 1,500+ customers."</p></div>
+      <div class="section-label">Where we win</div>
+      <ul class="win-list" style="margin-bottom:16px;">
+        <li>86% airline-direct vs their ~10% — the rest is GDS and scraped</li>
+        <li>4 trillion historical price points · 10+ year depth</li>
+        <li>Full supply + demand + pricing + status in one platform</li>
+        <li>No post-acquisition innovation stall — we continue to ship</li>
+        <li>1,500+ customers · stronger airline exec recognition</li>
+        <li>Very limited RFP presence since December 2023 acquisition</li>
+      </ul>
+      <div class="section-label">Where 3Victors wins — be honest</div>
+      <ul class="lose-list" style="margin-bottom:16px;">
+        <li>True real-time streaming of search and demand signals</li>
+        <li>DemandView for consumer intent and forward-looking demand</li>
+        <li>ATPCO reach across 90% of global airlines</li>
+        <li>"AI Company of the Year" 2024 — strong narrative with innovation-focused buyers</li>
+        <li>US airline customer base: American Airlines, JetBlue, SAS</li>
+      </ul>
+      <div class="section-label">Post-acquisition intelligence</div>
+      <div class="intel-box"><div class="intel-label">What we know about ATPCO integration</div><div class="intel-text">Acquired December 2023. Very limited presence in recent airline pricing RFPs. ATPCO publicly committed to integrating 3Victors technology by 2024-2025. As of mid-2026 there is limited concrete evidence of these launches materialising. Note: verify this positioning is still accurate before leaning on it heavily.</div></div>
+    </div>
+    <div class="detail-right">
+      <div class="section-label">Handle the objections</div>
+      <table class="obj-table">
+        <tr><td class="obj-q">"They won AI Company of the Year"</td><td class="obj-a"><strong>Challenge the evidence.</strong> "They won an AI award in June 2024. But since the December 2023 acquisition, what have they actually shipped? Ask them to show you product releases, customer wins, and RFP activity since then. Innovation that is announced but not delivered does not improve your revenue management."</td></tr>
+        <tr><td class="obj-q">"ATPCO has relationships with 90% of airlines"</td><td class="obj-a">"The ATPCO relationship network is real. What I would ask is whether that integration promise has translated into concrete products. Since December 2023, the combined offering has not materialised in the way ATPCO described."</td></tr>
+        <tr><td class="obj-q">"We need real-time demand signals"</td><td class="obj-a">"Search intent is one signal — it tells you what people are searching for. It does not tell you actual capacity, real booking trends, or historical pricing patterns. We give you all of those."</td></tr>
+      </table>
+      <div class="section-label">Talk track</div>
+      <div class="talk-track"><div class="tt-scenario">Full positioning against 3Victors</div><div class="tt-text">"We respect 3Victors' AI technology and real-time capabilities, but when selecting a pricing intelligence partner, data quality and proven reliability matter most. 86% of OAG's pricing data comes directly from airlines through our give-to-get model compared to their less than 10%. Since ATPCO's acquisition, 3Victors has shown limited presence in recent airline pricing RFPs, creating uncertainty about their future direction. OAG provides the broadest range of datasets — Supply, Demand, Pricing, and Status — giving you comprehensive commercial analysis rather than just search intent signals."</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- AGGREGATE INTELLIGENCE TAB -->
+<div id="tab-aggregate" class="tab-content">
+  <div class="detail-grid">
+    <div class="detail-left">
+      <div class="oneliner" style="margin-bottom:16px;"><div class="ol-label">One-line positioning</div><p>"Aggregate Intelligence's <strong>entire data model is built on OTA scraping with zero direct airline relationships</strong>. Their feed is only as reliable as the third-party sites they depend on. OAG gives you airline-direct pricing alongside schedules, demand, and status. They are a point solution for smaller carriers — <strong>OAG is built for airlines with ambition</strong>."</p></div>
+      <div class="section-label">Where we win</div>
+      <ul class="win-list" style="margin-bottom:16px;">
+        <li>86% airline-direct — they have zero direct airline relationships</li>
+        <li>Full portfolio: pricing + schedules + demand + status</li>
+        <li>Strong EMEA presence — they have none at all</li>
+        <li>Enterprise scale and reliability at large-carrier level</li>
+        <li>No vulnerability to scraping policy changes or platform restrictions</li>
+        <li>Ranked #1 in pricing intelligence vs their #3</li>
+      </ul>
+      <div class="section-label">Where Aggregate Intelligence wins — be honest</div>
+      <ul class="lose-list" style="margin-bottom:16px;">
+        <li>Best ancillary dataset in market — bags, seats, bundle logic</li>
+        <li>easyJet buys ancillary data from them, not OAG — a real gap</li>
+        <li>30-50% cheaper with no minimum commitment</li>
+        <li>Fast, lightweight API-first onboarding</li>
+        <li>Vizly.ai acquisition (October 2025) adds conversational AI analytics layer</li>
+      </ul>
+      <div class="section-label">Their recent moves</div>
+      <div class="intel-box"><div class="intel-label">Vizly.ai acquisition — October 2025</div><div class="intel-text">Aggregate Intelligence acquired Vizly.ai, an agentic AI data visualisation platform. Being integrated into FareTrack, adding a conversational AI layer. This starts to address one of their key weaknesses — moving them beyond a raw data feed. Worth watching. Still scraping-based data underneath though.</div></div>
+    </div>
+    <div class="detail-right">
+      <div class="section-label">Handle the objections</div>
+      <table class="obj-table">
+        <tr><td class="obj-q">"We mainly need ancillary data"</td><td class="obj-a"><strong>Acknowledge the gap honestly.</strong> "They have the best ancillary dataset right now and we are working to close that. But ancillary in isolation only tells part of the story. To make truly informed revenue decisions you need the full competitive picture — pricing, schedules, bookings, and status alongside it."</td></tr>
+        <tr><td class="obj-q">"They are significantly cheaper"</td><td class="obj-a">"Their pricing is lower because they scrape public sites rather than building direct airline relationships. The question is whether that data holds up when OTAs change their policies or restrict access."</td></tr>
+        <tr><td class="obj-q">"We are a smaller airline and they fit our budget"</td><td class="obj-a">"We understand. Ask yourself what you will need in 12 months as you grow. Whether you want to come back to market again, or have a partner that scales with you."</td></tr>
+      </table>
+      <div class="section-label">Talk track</div>
+      <div class="talk-track"><div class="tt-scenario">Full positioning against Aggregate Intelligence</div><div class="tt-text">"Aggregate Intelligence can look attractive on the surface, particularly on price, but their entire data proposition is built on scraping public OTA and metasearch sites with no direct airline relationships. Where they do have a genuine strength is ancillary data, and we will not overclaim on that, but it is one capability in isolation. OAG gives you pricing intelligence built on contractual airline-direct data, alongside schedules, bookings, and status data from a single trusted partner. Aggregate Intelligence is a point solution for smaller carriers. OAG is a strategic data partner built for airlines with ambition."</div></div>
+      <div class="section-label">Proof points</div>
+      <div class="proof-block">
+        <div class="pb-label">Use these in calls</div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text"><strong>easyJet</strong> — long-term OAG customer but buys ancillary data from Aggregate Intelligence. Honest acknowledgement of the gap.</div></div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text">Aggregate Intelligence is not active in EMEA — a hard limitation for any airline with European or Middle Eastern operations.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLIGHTAWARE TAB -->
+<div id="tab-flightaware" class="tab-content">
+  <div class="detail-grid">
+    <div class="detail-left">
+      <div class="oneliner" style="margin-bottom:16px;"><div class="ol-label">One-line positioning</div><p>"FlightAware tells you where a plane is. OAG tells you <strong>what was planned, what changed, what it means commercially, and what is coming next</strong>. If the use case is operational tracking only, FlightAware is credible. The moment a decision involves scheduling, pricing, demand, or capacity — they cannot help."</p></div>
+      <div class="section-label">Where we win</div>
+      <ul class="win-list" style="margin-bottom:16px;">
+        <li>Full commercial intelligence stack — schedules, demand, pricing, status</li>
+        <li>5 distinct flight states vs their operational tracking focus</li>
+        <li>24-month forward-looking schedules</li>
+        <li>Pricing and demand data — completely absent from FlightAware</li>
+      </ul>
+      <div class="section-label">Where FlightAware wins — be honest</div>
+      <ul class="lose-list" style="margin-bottom:16px;">
+        <li>41,000+ ADS-B receivers — one of the world's largest tracking networks</li>
+        <li>Foresight predictive ETAs using ML — strong for operational use</li>
+        <li>Backed by Collins Aerospace / RTX — strong enterprise and MRO credibility</li>
+        <li>Well established in TravelTech for status API feeds</li>
+      </ul>
+    </div>
+    <div class="detail-right">
+      <div class="section-label">Handle the objections</div>
+      <table class="obj-table">
+        <tr><td class="obj-q">"We already use FlightAware for status"</td><td class="obj-a"><strong>Do not fight the status relationship.</strong> "That is fine — they do positional tracking well. But are you getting schedule intelligence, capacity analysis, or pricing alongside it? We can sit alongside FlightAware for commercial use cases without displacing what they already do for you."</td></tr>
+        <tr><td class="obj-q">"We need real-time positional data"</td><td class="obj-a">"If positional aircraft tracking is the primary need, FlightAware's network is impressive. We would ask what decisions you are making with that data. For anything commercial — network planning, revenue management, competitive analysis — OAG is where the value sits."</td></tr>
+      </table>
+      <div class="section-label">Talk track</div>
+      <div class="talk-track"><div class="tt-scenario">When FlightAware is already in the stack</div><div class="tt-text">"FlightAware does positional tracking well — that is a different job to what OAG does. We are the commercial intelligence layer. We tell you what was scheduled, what changed, what the demand picture looks like, what competitors are charging. FlightAware tells you where a plane is right now. Both can co-exist in the same data stack because they answer completely different questions."</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FLIGHTRADAR24 TAB -->
+<div id="tab-fr24" class="tab-content">
+  <div class="detail-grid">
+    <div class="detail-left">
+      <div class="oneliner" style="margin-bottom:16px;"><div class="ol-label">One-line positioning</div><p>"Flightradar24 is a consumer product making an enterprise push. Enormous brand recognition but <strong>shallow B2B data depth</strong>. No schedules, no commercial intelligence, no pricing, no demand. Where they appear in deals it is almost always for positional tracking — not for the decisions OAG enables."</p></div>
+      <div class="section-label">Where we win</div>
+      <ul class="win-list" style="margin-bottom:16px;">
+        <li>Every commercial intelligence dimension — schedules, demand, pricing</li>
+        <li>Enterprise depth and IATA authority</li>
+        <li>90+ years of operational trust in aviation-critical decisions</li>
+        <li>Privacy-compliant data model — no regulator issues</li>
+      </ul>
+      <div class="section-label">Where Flightradar24 wins — be honest</div>
+      <ul class="lose-list" style="margin-bottom:16px;">
+        <li>50,000+ ADS-B receivers — world's largest positional network</li>
+        <li>100M+ app downloads — consumer brand recognition is massive</li>
+        <li>Very low price point for positional tracking data</li>
+        <li>Swedish privacy regulator reprimand in 2025 — flag for enterprise procurement teams</li>
+      </ul>
+    </div>
+    <div class="detail-right">
+      <div class="section-label">Handle the objections</div>
+      <table class="obj-table">
+        <tr><td class="obj-q">"Everyone knows Flightradar24"</td><td class="obj-a">"The consumer brand is huge — but enterprise data depth is a different question from consumer brand recognition. Their B2B offering is thin compared to what they are known for publicly."</td></tr>
+        <tr><td class="obj-q">"They are much cheaper for tracking"</td><td class="obj-a">"For pure positional tracking, yes. But tracking tells you where a plane is — it does not tell you what you should do about it commercially."</td></tr>
+      </table>
+      <div class="section-label">Talk track</div>
+      <div class="talk-track"><div class="tt-scenario">When Flightradar24 comes up as an alternative</div><div class="tt-text">"Flightradar24's consumer brand is extraordinary — 100 million downloads and everyone in aviation has used the app. But enterprise data depth is a different conversation from consumer reach. They have no schedules intelligence, no commercial analytics, no pricing or demand data. If the requirement is knowing where planes are right now, they are an option. If the requirement is understanding markets, planning networks, managing revenue — that is OAG's space entirely."</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- AMADEUS TAB -->
+<div id="tab-amadeus" class="tab-content">
+  <div class="detail-grid">
+    <div class="detail-left">
+      <div class="oneliner" style="margin-bottom:16px;"><div class="ol-label">One-line positioning</div><p>"Amadeus is the world's largest travel technology platform — but <strong>they are a GDS and booking infrastructure company first, a data intelligence company second</strong>. Their schedules are partial, their pricing is indirect MIDT data, and ForwardKeys only joined them in May 2025. OAG is the specialist. <strong>When an airline or airport wants the best commercial intelligence, they come to OAG — not to their booking system provider.</strong>"</p></div>
+      <div class="iata-warning" style="margin-bottom:14px;"><div class="iw-icon">⚡</div><div class="iw-text">Amadeus acquired ForwardKeys in May 2025 for $17.4M. <span>This is recent and the integration is still developing. They are building a more complete travel intelligence offering. Flag to SE if Amadeus comes up in a deal — their scale and distribution make them a serious longer-term competitor.</span></div></div>
+      <div class="section-label">Where we win vs Amadeus</div>
+      <ul class="win-list" style="margin-bottom:16px;">
+        <li>Schedules data — OAG is gold standard, Amadeus only partial coverage</li>
+        <li>Real-time flight status — OAG 5 states, 865 sources · Amadeus has no standalone status product</li>
+        <li>Pricing intelligence — OAG 86% airline-direct · Amadeus MIDT is indirect channel only</li>
+        <li>Independence — OAG is neutral · Amadeus is also the booking infrastructure airlines depend on commercially</li>
+        <li>Specialist positioning — OAG is aviation data only</li>
+        <li>Onboarding speed — OAG 24-48 hrs Snowflake</li>
+      </ul>
+      <div class="section-label">Where Amadeus wins — be very honest</div>
+      <ul class="lose-list" style="margin-bottom:16px;">
+        <li>Bookings data — MIDT is one of the strongest demand datasets in the market</li>
+        <li>Distribution reach — embedded in 90%+ of global airline and airport commercial operations</li>
+        <li>Multi-cloud delivery — Azure + Google Cloud + Snowflake</li>
+        <li>AI capability — Microsoft partnership · AI embedded across platform at enterprise scale</li>
+        <li>Analytics UI — Amadeus Advisor rated significantly stronger than OAG Analyser</li>
+        <li>ForwardKeys predictive demand — 17M+ air bookings processed daily</li>
+        <li>Brand and ecosystem — pull to stay in ecosystem is real</li>
+      </ul>
+    </div>
+    <div class="detail-right">
+      <div class="section-label">Handle the objections</div>
+      <table class="obj-table">
+        <tr><td class="obj-q">"We already use Amadeus for our PSS"</td><td class="obj-a"><strong>The ecosystem pull is real — don't fight it directly.</strong> "OAG has no commercial relationship with how you distribute or sell — we are purely focused on giving you the most accurate data. For decisions you want an independent view on, that neutrality has real value."</td></tr>
+        <tr><td class="obj-q">"Amadeus has ForwardKeys now"</td><td class="obj-a">"ForwardKeys joined Amadeus in May 2025 — the integration is very new. ForwardKeys was built for destinations and tourism boards, not airline commercial teams. They are strong on where people are going to travel — we are strong on what the market looks like and what it costs to fly there."</td></tr>
+        <tr><td class="obj-q">"Their MIDT data is the best demand dataset"</td><td class="obj-a"><strong>Acknowledge it — it is true.</strong> "MIDT is one of the strongest booking datasets in the market and we do not overclaim on that. Where OAG wins is combining demand data with best-in-market schedules, pricing, and status — a complete commercial intelligence picture rather than one very strong dataset in isolation."</td></tr>
+        <tr><td class="obj-q">"Their AI and analytics tools are more advanced"</td><td class="obj-a">"Their analytics UI and AI capability are ahead of ours today — that is honest. AI insights are only as good as the underlying data. Our schedules and pricing data quality is stronger. Better data with a developing AI layer versus advanced AI on top of partial data — which serves your decisions better?"</td></tr>
+      </table>
+      <div class="section-label">Talk track</div>
+      <div class="talk-track"><div class="tt-scenario">When Amadeus comes up as an incumbent or preferred vendor</div><div class="tt-text">"Amadeus is an extraordinary technology company. But their travel intelligence products are one part of a much larger business that serves hotels, agencies, rail, and payments alongside airlines. OAG is focused exclusively on aviation data intelligence. Our schedules are the industry gold standard, our pricing data is the most airline-direct in the market, and we connect schedules, status, demand, and pricing in a way no other single provider can. The question is not whether Amadeus is a good company — it is whether a generalist travel tech platform or a specialist aviation data partner gives you the sharpest commercial intelligence."</div></div>
+      <div class="section-label">Proof points</div>
+      <div class="proof-block">
+        <div class="pb-label">Key facts to know</div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text">Amadeus acquired ForwardKeys in <strong>May 2025 for $17.4M</strong>. ForwardKeys had $10.4M revenue in 2023. Integration is early stage as of May 2026. <a href="https://skift.com/2025/05/15/amadeus-acquires-forwardkeys-to-expand-travel-data-analytics/" class="pb-link">→ Skift report</a></div></div>
+        <div class="pb-item"><div class="pb-bullet">›</div><div class="pb-text">OAG internal framework rates Amadeus <strong>Low on scheduling data quality</strong> but High on bookings (#2 in market), analytical UI, and GTM capability. <a href="#" class="pb-link">→ 100 Days CI Framework [internal]</a></div></div>
+      </div>
+      <div class="section-label">Internal note — when to escalate</div>
+      <div class="intel-box"><div class="intel-label">Flag to your SE if Amadeus comes up</div><div class="intel-text">Amadeus is classified as a "High overlap / High execution capability" competitor. Always flag to Mo, Maria, Jade, Seth or Seb before a call where Amadeus is named.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>OAG Aviation Worldwide · Internal use only · Not for external distribution · v2 May 2026</p>
+  <p class="fn">Deal support: Mo, Maria, Jade, Seth, Seb · New intel: Competitive Intelligence channel in Teams</p>
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
