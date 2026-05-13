@@ -123,40 +123,82 @@ PROOF POINTS:
     "RateGain": """
 RATEGAIN BATTLECARD
 
-WHO THEY ARE:
-RateGain is a travel & hospitality technology company focused on revenue management, distribution and marketing AI. They acquired DHISCO and have expanded into airline distribution data. Publicly listed on Indian stock exchange. Primarily a hotel/hospitality tech company that has expanded into aviation.
+COMPETITOR OVERVIEW:
+RateGain is an India-headquartered SaaS provider founded in 2004 serving 3,100+ customers across travel and hospitality in 100+ countries. Publicly traded. Positioned as a broad-based travel tech platform covering hotels, OTAs, airlines, and car rentals. Core strength remains hotel and OTA-centric — airlines are a newer expansion. Their airline product is AirGain, launched 2017.
 
-THEIR STRENGTHS:
-- Strong in hospitality / hotel revenue management
-- Airfare competitive intelligence tools (AirGain)
-- Large distribution network in travel industry
-- Growing AI/ML capabilities
-- Good partnerships with OTAs and GDSs
+RATEGAIN PRODUCTS:
+- AirGain Rate Intelligence: Real-time airfare pricing intelligence across 200+ airlines, 700+ websites (OTAs, metasearch, brand sites, GDS). Key features: FlightWise (automated O&D tracking), Fare Evolution (historical pricing), Market Sense (automated alerts), AI-Powered Route Digest (Q1 2025 — daily AI executive summary). Claims 98% accuracy and 95% sufficiency SLAs.
+- AirGain Parity Watchtower: Monitors fare consistency across distribution channels to prevent revenue leakage. Markets itself as "industry's first parity solution."
+- Adara (2022 acquisition): Traveler intent data from loyalty programs and clickstream — forward-looking demand signals similar to 3Victors' DemandView.
+- Key RMS integrations: Accelya airRM, Maxamation Aviator RM.
+- Built on Google Cloud (BigQuery, Pub/Sub).
 
-THEIR WEAKNESSES:
-- Aviation is not their core — hospitality is. Aviation data depth is limited.
-- Airfare data coverage is narrower than OAG's
-- No flight schedules or status data
-- No seats data, no connections, no historical flight operations data
-- Primarily a software/SaaS company — not a raw data provider
-- Limited global reach vs OAG's truly global coverage
+OAG COMPETITIVE POSITIONING (shareable with customers):
+OAG stands out for its focus on data quality — 86% of pricing data collected directly from airlines through give-to-get partnerships, delivering far greater accuracy than scrape-led models. OAG covers >2x as many websites and airlines vs RateGain (1,500+ websites, 500+ airlines vs RateGain's ~700 websites, ~200 airlines). RateGain relies heavily on web scraping (only 20% direct from airlines), introducing volatility, missing fares, and OTA-biased prices. OAG is airline-native; RateGain's roots and strength remain hotel and OTA-centric.
 
-OAG ADVANTAGES vs RATEGAIN:
-- OAG is a pure aviation data company — schedules, status, seats, connections are all core products
-- OAG has much deeper and more authoritative aviation data than RateGain
-- OAG Airfare Altus provides 5+ years historical + 1 year forward airfare data
-- OAG Market Trends covers 26 weeks forward airfare from 2015
-- For any airline, airport or aviation use case, OAG is purpose-built; RateGain is not
-- OAG Data Direct (Snowflake) delivers data at scale that RateGain can't match
+WHY OAG IS BETTER THAN RATEGAIN:
+1. SUPERIOR DATA QUALITY: OAG collects ~86% via give-to-get directly from airlines. RateGain only 20% direct — rest is web-scraped OTA data. OTA data ≠ airline.com pricing.
+2. AIRLINE-NATIVE EXPERTISE: OAG is purpose-built for airline revenue management. RateGain's core is hotels — airline veterans question their airline-specific capabilities.
+3. UNRIVALLED MARKET COVERAGE: OAG covers >1,500 websites, >500 airlines vs RateGain's ~700 websites, ~200 airlines. More than 2x the coverage.
+4. PROVEN ACCURACY: Multiple airlines chose OAG after finding RateGain's data unreliable — Eurowings, Allegiant, Pegasus, Flyadeal specifically returned to OAG after RateGain quality issues.
+5. SUPERIOR SUPPORT: Airlines using both platforms consistently report better responsiveness, airline expertise, and problem-solving from OAG vs RateGain.
 
-KEY OBJECTIONS & RESPONSES:
-- "We use RateGain for revenue management": OAG and RateGain can be complementary — OAG for schedule/status/seats data, RateGain for their RM tools. But for raw aviation data, OAG is the authority.
-- "RateGain has AI features": OAG data feeds AI models with authoritative input data — without good data, AI output is unreliable.
+OAG STRENGTHS:
+- 86% airline-direct give-to-get partnerships with contractual G2G agreements
+- Unmatched global coverage — >2x websites and airlines vs RateGain
+- Trusted market leader — Finnair (10+ years), Ryanair, easyJet, Turkish Airlines are long-term customers
+- Airline-native company vs hotel-tech company
 
-WIN THEMES:
-- Aviation data depth and authority
-- Breadth of data products (schedules + status + seats + airfare + historical)
-- Pure aviation focus vs hospitality-first competitor
+OAG GAPS/WEAKNESSES:
+- Premium pricing model: OTA/MSE data collection costs significantly higher than RateGain (who bundles it with hotel contracts)
+- Complex product suite: Pharos, PPS, Market Trends — overlapping tools create onboarding friction
+- Pricing data refresh in hours vs RateGain's "real-time" marketing claim (though no provider has true live data)
+
+RATEGAIN STRENGTHS:
+- Claims real-time data shopping (vs batch), 98% accuracy SLA, 95% sufficiency SLA
+- User-friendly UI: rapid onboarding 48-72 hours, unlimited custom reports, 24/7 support, 99.5% uptime
+- Comprehensive channel coverage: 200+ airlines, 700+ websites, OTA/MSE/GDS/mobile
+- AI-Powered Route Digest (Q1 2025) — daily automated AI executive summary, boosted stock price
+- Lower cost for OTA/MSE data — bundled through existing hotel contracts
+- RMS integrations with Accelya and Maxamation
+
+RATEGAIN WEAKNESSES:
+- Only 20% direct airline data — 80% web scraped through QL2 and OTA channels. "Real-time" doesn't address OTA-manipulated pricing.
+- Multiple airlines left RateGain citing data quality issues and returned to OAG: Eurowings, Allegiant Air, Flyadeal, Pegasus.
+- 24/7 support claim contradicted by airline feedback — OAG consistently rated more responsive and airline-focused.
+- Hotel-centric heritage: airline revenue managers question depth of airline expertise.
+- Limited airline coverage: ~200 airlines vs OAG's 500+.
+
+OVERALL COMPETITIVE RESPONSE:
+"OAG's 86% airline-direct give-to-get model vs RateGain's 20% direct means we deliver actual airline.com pricing, not OTA-displayed prices. Multiple airlines — Eurowings, Allegiant, Pegasus — chose OAG after experiencing RateGain's data quality issues. We cover 1,500+ websites and 500+ airlines, more than double RateGain's coverage. Yes, we're more expensive — because we don't take shortcuts. When you're making million-dollar pricing decisions, do you trust airline-direct data or OTA-displayed prices?"
+
+TALK TRACKS — WHY WE WIN:
+
+1. SUPERIOR DATA QUALITY:
+"More than 80% of our data is sourced directly from airlines through contractual agreements — actual airline.com pricing. RateGain only gets 20% direct from airlines and relies on web-scraped OTA data. Multiple airlines have left RateGain and came to us specifically citing data quality concerns with OTA-sourced data. The issue? OTA data doesn't equal airline.com data — it's what OTAs choose to display. When you're making million-dollar pricing decisions, do you trust airline-direct data or OTA-displayed prices?"
+
+2. AIRLINE EXPERTISE AND LONG-TERM PARTNERSHIPS:
+"We're recognized as the industry benchmark — airlines trust us with their most critical pricing decisions. Look at Finnair — they've been with us for over 10 years. Ryanair, easyJet, Turkish Airlines — long-term customers who've stayed with us. RateGain is relatively new to airlines — they're known for hotels. When your revenue team needs to defend a pricing strategy to the executive board, do they want to rely on a hotel tech provider trying to break into airlines, or the industry standard that's been trusted for decades?"
+
+3. UNMATCHED GLOBAL COVERAGE:
+"We cover 1,500+ websites and 500+ airlines. RateGain covers 700 websites and 200 airlines — less than half. That's blind spots in your competitive intelligence. Network carriers can't afford to miss what competitors are doing on routes we track but they don't."
+
+TALK TRACKS — WHY WE LOSE:
+
+PREMIUM PRICING:
+"We're more expensive because we don't take shortcuts. RateGain gets OTA data bundled into their hotel contracts — it's cheap for them. We collect more than 80% of our data directly from airlines through contractual agreements. That costs more, but it's accurate airline.com pricing, not OTA-displayed prices. The question isn't whether we're more expensive — it's whether making million-dollar pricing decisions on cheap, scraped data is worth the risk. Some airlines paid for the cheaper option first, then switched to us or came back after experiencing data quality issues."
+
+WIDER USE CASE / HOLIDAY PACKAGES / GSAs:
+"We're laser-focused on airline revenue management — that's our core. RateGain is a multi-vertical travel tech company covering hotels, car rentals, and vacation packages. If you're a holiday package department needing vacation bundle pricing, or a GSA managing multiple small airlines looking for one affordable contract across all your clients, RateGain's broader travel portfolio and lower price point makes sense. We don't try to be everything to everyone — we're built for airlines making strategic pricing decisions."
+
+PRODUCT INNOVATION / UI:
+"RateGain excels at rapid feature releases — they launched AI Digest and Market Sense in months and have a modern, intuitive interface that gets analysts productive quickly. We take a different approach. Our products — Pharos, PPS, Market Trends — are comprehensive and battle-tested by airlines like Finnair for over 10 years. More powerful but requires more training time. The trade-off: do you want the latest features fast with a simpler interface, or depth, accuracy, and proven reliability that scales with your network complexity?"
+
+PROOF POINTS:
+- Eurowings, Allegiant Air, Flyadeal, Pegasus all returned to OAG after leaving for RateGain citing data quality issues
+- Finnair: 10+ year OAG customer — long-term airline loyalty
+- RevenueMindz chose RateGain at 2.5x lower price but later admitted "we might not have understood what more was in the package with OAG"
+- Airlines using both platforms consistently rate OAG support as more responsive and airline-focused
 """,
 
     "Aggregate Intelligence": """
