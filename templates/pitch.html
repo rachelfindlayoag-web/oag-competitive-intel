@@ -380,9 +380,55 @@
   </div>
 
   <script>
+    const STORAGE_KEY = 'oag_pitch_state';
     let selectedComp = '';
     let rawText = '';
 
+    // ── Save / restore state ──────────────────────────────────────────────────
+    function saveState() {
+      const products = getSelectedProducts();
+      const state = {
+        competitor: selectedComp,
+        products,
+        customer: document.getElementById('customer').value,
+        context:  document.getElementById('context').value,
+        rawText,
+      };
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+    }
+
+    function restoreState() {
+      let state;
+      try { state = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch(e) {}
+      if (!state) return;
+
+      // Restore competitor
+      if (state.competitor) {
+        const pill = document.querySelector(`.comp-pill[data-comp="${state.competitor}"]`);
+        if (pill) selectComp(pill);
+      }
+      // Restore product checkboxes
+      if (state.products && state.products.length) {
+        document.querySelectorAll('.product-check input').forEach(cb => {
+          if (state.products.includes(cb.value)) {
+            cb.checked = true;
+            cb.closest('label').classList.add('checked');
+          }
+        });
+      }
+      // Restore text fields
+      if (state.customer) document.getElementById('customer').value = state.customer;
+      if (state.context)  document.getElementById('context').value  = state.context;
+      // Restore result
+      if (state.rawText) {
+        rawText = state.rawText;
+        document.getElementById('pitch-output').innerHTML = renderMarkdown(state.rawText);
+        show('pitch-output');
+        document.getElementById('copy-btn').style.display = 'inline-block';
+      }
+    }
+
+    // ── Competitor selection ──────────────────────────────────────────────────
     function selectComp(el) {
       document.querySelectorAll('.comp-pill').forEach(p => p.classList.remove('selected'));
       el.classList.add('selected');
@@ -392,8 +438,7 @@
     }
 
     function toggleCheck(checkbox) {
-      const label = checkbox.closest('label');
-      label.classList.toggle('checked', checkbox.checked);
+      checkbox.closest('label').classList.toggle('checked', checkbox.checked);
     }
 
     function getSelectedProducts() {
@@ -406,6 +451,7 @@
       });
     }
 
+    // ── Generate ──────────────────────────────────────────────────────────────
     async function generate() {
       if (!selectedComp) { alert('Please select a competitor first.'); return; }
 
@@ -435,6 +481,7 @@
           document.getElementById('pitch-output').innerHTML = renderMarkdown(data.result);
           show('pitch-output');
           document.getElementById('copy-btn').style.display = 'inline-block';
+          saveState();
         }
       } catch (e) {
         document.getElementById('error-box').textContent = 'Could not reach the server. Please try again.';
@@ -445,30 +492,24 @@
       }
     }
 
+    // ── Markdown renderer ─────────────────────────────────────────────────────
     function renderMarkdown(text) {
       return text
-        // Bold
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        // H3 headings
         .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-        // H2 headings
         .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-        // Bullet points
         .replace(/^\* (.+)$/gm, '<li>$1</li>')
         .replace(/^- (.+)$/gm, '<li>$1</li>')
-        // Wrap consecutive <li> in <ul>
         .replace(/(<li>.*<\/li>\n?)+/g, m => `<ul>${m}</ul>`)
-        // Blockquotes
         .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
-        // Paragraphs (double newline)
         .replace(/\n\n/g, '</p><p>')
         .replace(/^(?!<[hul])(.+)$/gm, m => m.startsWith('<') ? m : `<p>${m}</p>`)
-        // Clean up
         .replace(/<p><\/p>/g, '')
         .replace(/<p>(<[hul])/g, '$1')
         .replace(/(<\/[hul][^>]*>)<\/p>/g, '$1');
     }
 
+    // ── Copy ──────────────────────────────────────────────────────────────────
     function copyText() {
       navigator.clipboard.writeText(rawText).then(() => {
         const btn = document.getElementById('copy-btn');
@@ -476,6 +517,13 @@
         setTimeout(() => btn.textContent = 'Copy', 2000);
       });
     }
+
+    // ── Auto-save form fields as you type ─────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      restoreState();
+      document.getElementById('customer').addEventListener('input', saveState);
+      document.getElementById('context').addEventListener('input', saveState);
+    });
   </script>
 </body>
 </html>
