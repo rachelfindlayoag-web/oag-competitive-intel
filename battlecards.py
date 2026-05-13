@@ -204,40 +204,73 @@ WIN THEMES:
     "3Victors": """
 3VICTORS BATTLECARD
 
-WHO THEY ARE:
-3Victors is an aviation data and analytics company focused on air travel demand forecasting, booking data and passenger intelligence. They focus on helping airlines, airports and travel companies understand passenger demand patterns.
+COMPETITOR OVERVIEW:
+3Victors is a Virginia-based start-up founded in 2015, acquired by ATPCO in December 2023. They pioneered Travel Data Analytics as a Service, processing billions of flight search data points to provide real-time market insights. Named "AI Company of the Year" in 2024 by TravelTech Breakthrough. Strong US presence with customers including American Airlines and JetBlue. ATPCO aims to achieve 80% dynamic offers by 2026 with 3Victors as a core enabler — however, innovation has notably slowed since acquisition with very limited presence in recent airline pricing RFPs.
 
-THEIR STRENGTHS:
-- Specialised passenger booking and demand data
-- Good airline distribution/booking analytics
-- Focused product for revenue management teams
-- Strong relationships with some US carriers
+3VICTORS PRODUCTS:
+- PriceEye: Competitive pricing intelligence. Fuses direct booking queries, GDS shopping data, and web scrapes. Real-time responsiveness. Only ~10% give-to-get vs OAG's 86%.
+- DemandView: Demand forecasting. Filters ~60% bot traffic from search data to reveal true consumer intent. Combines search demand, pricing, capacity, and booking data.
+Key data partnerships: QL2 for scraped pricing data (acknowledged lower quality than OAG), AWS.
 
-THEIR WEAKNESSES:
-- Narrow focus — primarily booking/demand data
-- No schedule data, no flight status, no real-time operations data
-- Limited geographic coverage vs OAG's global reach
-- Small team, limited product breadth
-- No Snowflake delivery or enterprise data infrastructure
-- Less established outside of North America
+OAG COMPETITIVE POSITIONING (shareable with customers):
+OAG stands out for its focus on data quality — 86% of pricing data collected directly from airlines through give-to-get partnerships, delivering 98% data completeness and 98.4% timeliness. 3Victors relies on GDS and scraped data — inferred proxies, not a reflection of actual market prices. OAG also offers broader historical depth (10+ years, 4 trillion historical price points) and uniquely combines schedules and pricing in a single framework.
 
-OAG ADVANTAGES vs 3VICTORS:
-- OAG Passenger Booking Data covers January 2019 forward with 1 year forward, refreshed weekly/monthly — comparable coverage
-- OAG Traffic Analyser provides booking/passenger data within a broader analytics suite
-- OAG provides the full picture: schedules + status + seats + bookings + airfare in one place
-- OAG's global coverage is unmatched — 3Victors skews US/North American
-- OAG Data Direct (Snowflake) delivers booking data alongside all other OAG data products in one pipeline
-- OAG has been the aviation data authority since 1929 — enterprise trust and reliability
+WHY OAG IS BETTER THAN 3VICTORS:
+1. SUPERIOR DATA QUALITY: 86% of OAG pricing data via give-to-get model vs 3Victors' ~10%. 98% completeness and 98.4% timeliness vs web-scraped data quality.
+2. COMPREHENSIVE MARKET INTELLIGENCE: OAG offers Supply (schedules) + Demand (bookings) + Pricing + Status. 3Victors offers only search signals and pricing.
+3. HISTORICAL DEPTH: 10+ years of historical airfare data with 4 trillion historical price points. 3Victors lacks comparable archives.
+4. PROVEN MARKET LEADER: 90+ years, 1,500+ customers across 10+ verticals vs 3Victors' limited brand recognition.
+5. POST-ACQUISITION UNCERTAINTY: Innovation has slowed significantly since ATPCO's December 2023 acquisition. No major product launches or new combined offerings materialised. Very limited RFP presence.
+6. GLOBAL FOOTPRINT: OAG in 190+ countries, 10 global offices. 3Victors primarily US-centric.
 
-KEY OBJECTIONS & RESPONSES:
-- "3Victors has specialised booking data": OAG Traffic Analyser and Passenger Booking Data covers the core use case. Ask specifically what data points they're missing from OAG.
-- "3Victors is our existing supplier": Position OAG as the consolidation opportunity — replace multiple point solutions with one authoritative data partner.
+OAG STRENGTHS:
+- Broadest datasets: Supply, Demand, Pricing & Status for comprehensive analysis
+- Highest quality pricing data: 86% via give-to-get model
+- 10+ years historical data, 4 trillion price points
+- Established market leader — 90+ years, 1,500+ customers
 
-WIN THEMES:
-- Full aviation data platform vs narrow point solution
-- Global coverage vs North American focus
-- Consolidate multiple vendors into OAG
-- Enterprise infrastructure and reliability
+OAG GAPS/WEAKNESSES:
+- Limited real-time AI & demand signals: More traditional delivery (updates in hours) vs 3Victors' real-time search streaming
+- Premium pricing model: Higher cost can be barrier for cost-sensitive airlines
+- No forward-looking consumer demand data (yet): Lack true consumer search/intent signals like DemandView
+
+3VICTORS STRENGTHS:
+- AI-driven real-time technology — filters billions of search queries for clean demand data
+- ATPCO backing — access to 90% of airlines via ATPCO relationships
+- Named "AI Company of the Year" 2024 — strong innovation narrative
+- Real-time streaming of search demand data
+
+3VICTORS WEAKNESSES:
+- Poor data quality: ~10% give-to-get, rest is web-scraped (QL2) — lower quality than OAG
+- Limited brand recognition: Not widely known; expected to remain embedded tech not sought-after brand
+- Post-acquisition stagnation: Very limited innovation, no major product launches since Dec 2023 acquisition
+- US-centric: Limited global perspective for international carriers
+- No historical depth: Cannot support long-term pricing strategy or seasonality analysis
+
+OVERALL COMPETITIVE RESPONSE:
+"We respect 3Victors' AI technology and real-time capabilities, but when selecting a pricing intelligence partner, data quality and proven reliability matter most. 86% of OAG's pricing data comes directly from airlines through our give-to-get model compared to their less than 10% — the rest of their data is web-scraped, which simply cannot match our 98% completeness and 98.4% timeliness. Since ATPCO's acquisition, 3Victors has shown slowed innovation with very limited presence in recent airline pricing RFPs. Beyond data quality, OAG provides the broadest range of datasets in the market — Supply, Demand, Pricing, and Status — giving you comprehensive commercial analysis rather than just search intent signals. The choice comes down to this: innovative technology with uncertain data quality and post-acquisition risk, or the proven, trusted foundation with superior data quality that the world's leading airlines rely on to make confident pricing decisions every day."
+
+TALK TRACKS — WHY WE WIN:
+
+1. SUPERIOR DATA QUALITY (GIVE-TO-GET):
+"The fundamental difference is data quality. We source 86% of our pricing data directly from airlines — 3Victors gets only ~10%, with the rest web-scraped through QL2. That's why we deliver 98% completeness and 98.4% timeliness. Yes, they offer real-time search data, but would you rather have minute-by-minute updates of uncertain quality, or rock-solid data you can confidently base your pricing strategy on?"
+
+2. PROVEN STABILITY vs POST-ACQUISITION UNCERTAINTY:
+"Let's talk about stability. We've been the trusted aviation data partner for 90+ years with 1,500+ customers. 3Victors? Since ATPCO acquired them in December 2023, innovation has stalled — we're seeing very limited RFP activity from them. When you're presenting your vendor recommendation to leadership, which name carries more weight: OAG, the industry gold standard, or 3Victors, an embedded technology with unclear post-acquisition direction that most airline executives haven't heard of?"
+
+3. COMPREHENSIVE MARKET INTELLIGENCE:
+"Search intent is interesting, but it's just one signal. What about actual capacity on the route? What are real booking trends showing? What's the historical pricing pattern? We give you Supply, Demand, Pricing, and Status — the complete market view. 3Victors gives you search signals and scraped pricing. When your revenue manager needs to defend a network decision, do they want to say 'search data shows interest' or 'here's the complete market picture with actual bookings, capacity, and 10+ years of pricing trends'?"
+
+TALK TRACKS — WHY WE LOSE:
+
+REAL-TIME CAPABILITY GAP:
+"While 3Victors offers more real-time search data streaming than we do currently, we focus on what matters most for pricing decisions: data quality, historical depth, and comprehensive market context. Our 86% give-to-get model delivers 98% completeness and 98.4% timeliness, plus 10+ years of historical data and complete market view across Supply, Demand, and Pricing. That's the foundation for confident strategic decisions."
+
+PERCEPTION OF INNOVATION:
+"While 3Victors won an AI award in June 2024 and has compelling technology messaging, since ATPCO acquired them in December 2023 there have been no major product announcements, no new releases, and very limited presence in recent airline pricing RFPs. Innovation appears to have slowed significantly post-acquisition. Ask them to show you what's actually been released since the acquisition."
+
+ATPCO ECOSYSTEM ADVANTAGE:
+"The ATPCO connection is real — if you're already using multiple ATPCO products, the idea of an integrated ecosystem is attractive. What I'd point out is that since the December 2023 acquisition, we haven't seen concrete evidence of that integration materialising. Just make sure you ask them for specific timelines and customer references who've successfully implemented since the acquisition."
 """,
 }
 
