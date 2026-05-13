@@ -8,6 +8,8 @@ from functools import wraps
 from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 from apscheduler.schedulers.background import BackgroundScheduler
 
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+
 DB_PATH = os.environ.get("DB_PATH", os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.db"))
 DASHBOARD_PASSWORD = os.environ.get("DASHBOARD_PASSWORD", "oag-intel-2026").strip()
 
@@ -97,6 +99,91 @@ def create_app():
     @login_required
     def playbook():
         return render_template("playbook.html")
+
+    @app.route("/pitch")
+    @login_required
+    def pitch():
+        from battlecards import OAG_PRODUCTS, BATTLECARDS
+        competitors = list(BATTLECARDS.keys())
+        return render_template("pitch.html", products=OAG_PRODUCTS, competitors=competitors)
+
+    @app.route("/api/pitch", methods=["POST"])
+    @login_required
+    def generate_pitch():
+        if not GEMINI_API_KEY:
+            return jsonify({"error": "GEMINI_API_KEY not configured. Please add it in Render environment variables."}), 500
+
+        data = request.json or {}
+        competitor  = data.get("competitor", "")
+        products    = data.get("products", [])
+        customer    = data.get("customer", "")
+        context     = data.get("context", "")
+
+        from battlecards import BATTLECARDS, OAG_OVERVIEW
+
+        battlecard = BATTLECARDS.get(competitor, "No battlecard available for this competitor.")
+
+        # Pull recent intel items for this competitor from DB
+        conn = get_db()
+        c = conn.cursor()
+        c.execute(
+            "SELECT title, summary, category, published_at FROM items WHERE company = ? ORDER BY published_at DESC LIMIT 8",
+            (competitor,)
+        )
+        recent_items = c.fetchall()
+        conn.close()
+
+        recent_intel = "\n".join([
+            f"- [{row['category']}] {row['title']}: {(row['summary'] or '')[:200]}"
+            for row in recent_items
+        ]) or "No recent intel available."
+
+        products_str = ", ".join(products) if products else "General OAG data products"
+
+        prompt = f"""You are an expert sales coach at OAG Aviation, the world's leading aviation data company.
+
+A sales rep is preparing for a competitive deal and needs sharp, confident talking points.
+
+=== OAG CONTEXT ===
+{OAG_OVERVIEW}
+
+=== COMPETITOR BATTLECARD: {competitor} ===
+{battlecard}
+
+=== RECENT INTEL ON {competitor.upper()} ===
+{recent_intel}
+
+=== THIS DEAL ===
+Customer / Prospect: {customer if customer else 'Not specified'}
+Additional context: {context if context else 'None provided'}
+OAG Products being pitched: {products_str}
+Competitor they are up against: {competitor}
+
+=== YOUR TASK ===
+Generate a concise, punchy sales brief for this rep. Structure it as:
+
+**Why OAG wins this deal**
+3-4 bullet points on OAG's strongest advantages against {competitor} for the products being pitched.
+
+**Watch out for**
+2-3 likely objections the prospect might raise (based on {competitor}'s pitch) and a sharp one-line response to each.
+
+**Recent intel to drop**
+1-2 bullet points referencing the most relevant recent {competitor} news the rep can use to show they've done their homework.
+
+**Opening line**
+One confident, natural opening line the rep could use to position OAG vs {competitor} in the first 2 minutes of the call.
+
+Keep everything concise, direct and usable in a real sales conversation. No fluff."""
+
+        try:
+            import google.generativeai as genai
+            genai.configure(api_key=GEMINI_API_KEY)
+            model = genai.GenerativeModel("gemini-1.5-flash")
+            response = model.generate_content(prompt)
+            return jsonify({"result": response.text})
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
 
     # ── API ────────────────────────────────────────────────────────────────────
 
