@@ -204,43 +204,76 @@ PROOF POINTS:
     "Aggregate Intelligence": """
 AGGREGATE INTELLIGENCE BATTLECARD
 
-WHO THEY ARE:
-Aggregate Intelligence (Aggi) is a niche aviation data company focused on airline schedules and capacity data, primarily serving revenue management and network planning teams. A smaller, specialist competitor.
+COMPETITOR OVERVIEW:
+Aggregate Intelligence is a privately held, U.S.-based travel data and analytics provider focused on airfare and ancillary pricing intelligence. Targets small and mid-sized airlines wanting fast, lower-cost competitive data without enterprise contracts. Data sourced entirely through OTA and metasearch scraping — no direct airline relationships. Ranked #3 in pricing intelligence (tied with 3Victors), behind OAG/Infare (#1) and RateGain (#2). Known customers: easyJet (ancillary data only) and Arajet. Not present in EMEA; only modest footprint in Latin America.
 
-THEIR STRENGTHS:
-- Focused specifically on schedule and capacity intelligence
-- Can be agile and responsive as a smaller company
-- Competitive pricing on schedule data
-- Some customers prefer working with a boutique supplier
+KEY WATCH-OUT: Aggregate Intelligence uses ancillary data as a door opener — including with existing OAG customers (e.g. easyJet buys ancillary data from Aggi despite being an OAG customer).
 
-THEIR WEAKNESSES:
-- Much smaller coverage and data breadth than OAG
-- No flight status data
-- No real-time data delivery
-- No airfare data
-- No Snowflake/direct delivery infrastructure
-- Limited historical depth
-- Fewer analytics tools and no equivalent to OAG's Analyser suite
-- Smaller team means limited support and development roadmap
-- Less trusted by large enterprise customers who need reliability guarantees
+AGGREGATE INTELLIGENCE PRODUCTS:
+- FareTrack.ai: Primary platform. Multi-channel competitive fare and ancillary pricing intelligence across airline.com, OTAs, and metasearch. REST API and analytical dashboard. Near real-time. Covers airfare AND ancillary data (baggage fees, seat pricing, bundle logic — widely considered best ancillary dataset in market).
+- Analytics Dashboard: Cloud-native UI for revenue management teams. Lightweight, fast to onboard, no heavy IT resource needed.
+- Vizly.ai (acquired Oct 2025): Agentic AI data visualisation platform being integrated into FareTrack — adds conversational AI layer, allows analysts to interact directly with pricing data and surface insights faster. Significant development — moves them beyond raw data feed towards analytical offering.
 
-OAG ADVANTAGES vs AGGREGATE INTELLIGENCE:
-- OAG is the IATA-designated global schedule aggregator — Aggi sources data that ultimately comes through OAG
-- OAG covers flight status, seats, airfare, connections — Aggi does not
-- OAG Data Direct (Snowflake) and API infrastructure is enterprise-grade
-- OAG has data going back to 1996; Aggi's historical depth is limited
-- OAG has global airline relationships and IATA partnerships Aggi cannot match
-- Enterprise customers need OAG's reliability SLAs, compliance, and scale
+OAG COMPETITIVE POSITIONING (shareable with customers):
+Aggregate Intelligence can look attractive on price and simplicity, but their entire data proposition is built on scraping public OTA and metasearch sites with no direct airline relationships — their feed is only ever as reliable as the third-party sites they depend on. Where they have a genuine strength is ancillary data. But OAG gives you pricing intelligence built on contractual, airline-direct data, alongside schedules, bookings, and status from a single trusted partner, and global coverage to support you as you scale. Aggregate Intelligence is a point solution for smaller carriers; OAG is a strategic data partner built for airlines with ambition.
 
-KEY OBJECTIONS & RESPONSES:
-- "Aggi is cheaper": Ask what data products they need — OAG likely provides much more for a comparable total cost. Cheaper data with gaps costs more in the long run.
-- "Aggi is more responsive/personal": OAG has dedicated account management and a growing customer success function.
+WHY OAG IS BETTER THAN AGGREGATE INTELLIGENCE:
+1. SUPERIOR DATA QUALITY: 86% of Infare fare data via direct G2G airline partnerships — the highest rate in the market. Aggregate Intelligence has zero direct airline relationships; entirely dependent on scraping.
+2. RESILIENT INFRASTRUCTURE: Aggregate Intelligence is entirely dependent on third-party sites remaining accessible. Scraping restrictions, platform policy changes, or privacy legislation could disrupt their feed. OAG's contractual model has no such vulnerability.
+3. UNIFIED SUPPLY AND DEMAND VIEW: OAG offers pricing alongside Schedules, Bookings, and Status. Aggregate Intelligence is a single-feed pricing provider only.
+4. GLOBAL COVERAGE: Strong EMEA and North America presence. Aggregate Intelligence not active in EMEA, only modest Latin America footprint.
+5. ENTERPRISE SCALE: Built to perform at enterprise scale across world's largest carriers. Aggregate Intelligence's scraping model faces coverage gaps at large scale.
+6. STRATEGIC PARTNER NOT POINT SOLUTION: OAG offers pricing + schedules + bookings + status. Aggregate Intelligence sells one data feed.
 
-WIN THEMES:
-- Data authority and IATA relationship
-- Breadth of products Aggi simply doesn't offer
-- Enterprise reliability and scale
-- Long-term data history
+OAG STRENGTHS:
+- Full data portfolio: pricing, schedules, bookings, status — Aggi only does pricing/ancillary
+- 86% give-to-get G2G model — contractual, airline-direct vs Aggi's scraping-only
+- Strong EMEA and North America coverage — Aggi has no EMEA presence
+- Enterprise scale and reliability
+
+OAG GAPS/WEAKNESSES:
+- Ancillary data: Known gap. Aggregate Intelligence leads here — baggage fees, seat pricing, bundle logic. Even easyJet (existing OAG customer) buys ancillary data from Aggi not OAG.
+- Premium pricing: Significantly higher cost vs Aggi's pay-as-you-consume, no minimum commitments model.
+- Product complexity: Pharos, PPS, Market Trends — multiple overlapping tools vs Aggi's single lightweight API.
+
+AGGREGATE INTELLIGENCE STRENGTHS:
+- Ancillary data leadership: Best ancillary dataset in market (baggage fees, seat pricing, bundle logic) — actively used as door opener, including with OAG customers
+- Flexible commercial model: Pay-for-what-you-consume, no minimum commitments — very accessible for smaller carriers
+- Multi-channel pricing: airline.com + OTAs + metasearch in single feed
+- Simple API-first integration: Fast to onboard, no heavy IT resource needed
+- Vizly.ai acquisition (Oct 2025): Adding agentic AI/conversational analytics layer — closing the gap on insights capability
+
+AGGREGATE INTELLIGENCE WEAKNESSES:
+- Zero direct airline relationships: Entirely scraping-dependent. Vulnerable to OTA policy changes, privacy legislation, scraping restrictions.
+- No supply or demand intelligence: Only pricing and ancillary. Cannot provide schedules, status, or bookings.
+- Very limited customer footprint: No known instances as sole primary data provider for a large airline. Brand recognition significantly behind OAG.
+- No EMEA presence: Cannot support airlines with international/EMEA operations.
+- Point solution only: Not a strategic data partner.
+
+OVERALL COMPETITIVE RESPONSE:
+"Aggregate Intelligence's entire data proposition is built on scraping public OTA and metasearch sites — no direct airline relationships. That means their feed is only as reliable as the third-party sites they depend on. Where they do have a genuine strength is ancillary data — we won't overclaim on that. But OAG gives you pricing intelligence built on contractual, airline-direct data, alongside schedules, bookings, and status from a single trusted partner, with the global coverage to support you as you scale. Aggregate Intelligence is a point solution for smaller carriers; OAG is a strategic data partner built for airlines with ambition."
+
+TALK TRACKS — WHY WE WIN:
+
+1. DATA QUALITY AND TRUST:
+"When your revenue management team is using pricing data to make decisions that directly impact your revenue, you need to know that data is accurate and where it came from. 86% of our fare data comes directly from airlines via contractual relationships. Aggregate Intelligence sources all of its data by scraping public OTA and metasearch sites, with no direct airline relationships at all. That means their feed is only ever as reliable as the third-party sites they depend on. We do not have that vulnerability."
+
+2. PROSPECT NEEDS MORE THAN PRICING:
+"As your data needs grow beyond competitive fares, you will need a partner that can give you the full picture. Aggregate Intelligence only does pricing. With OAG you have pricing, schedules, bookings, and status from a single trusted partner, without having to manage multiple vendor relationships."
+
+3. GLOBAL / EMEA OPERATIONS:
+"If your network extends into Europe, the Middle East, or Africa, Aggregate Intelligence simply cannot support you. OAG has strong, established coverage across EMEA and North America, so as your network grows, we grow with you."
+
+TALK TRACKS — WHY WE LOSE:
+
+SMALL / COST-SENSITIVE CARRIER:
+"We understand that budget is a real constraint, and Aggregate Intelligence will look more affordable on paper. But it is worth thinking about what you are getting for that price and whether a scraped data feed will still meet your needs as you grow. We are happy to explore whether there is a commercial structure that works for where you are today."
+
+PROSPECT'S PRIMARY NEED IS ANCILLARY DATA:
+"When it comes to ancillary data, Aggregate Intelligence has a strong offering and it is a gap we are working to close. But it is worth stepping back and thinking about what you are actually trying to achieve. Ancillary data in isolation only tells part of the story. To make truly informed revenue decisions you need to understand the full competitive picture — pricing, schedules, bookings, and status alongside it. With Aggregate Intelligence you are buying one piece of the puzzle from a provider whose entire data foundation is built on scraping public websites. With OAG you get a far broader dataset from a partner with direct airline relationships and the global coverage to support you as your network grows."
+
+PROSPECT WANTS SPEED AND SIMPLICITY:
+"If speed to value is the priority, Aggregate Intelligence will feel simpler out of the gate. But that simplicity has a ceiling. We would encourage you to think about not just what you need today, but what you will need in twelve months, and whether starting with a point solution means you will be back in procurement sooner than you'd like."
 """,
 
     "3Victors": """
