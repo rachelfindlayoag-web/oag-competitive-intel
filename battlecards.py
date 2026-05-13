@@ -31,44 +31,93 @@ BATTLECARDS = {
     "Cirium": """
 CIRIUM BATTLECARD
 
-WHO THEY ARE:
-Cirium (owned by RELX/LexisNexis) is OAG's closest direct competitor in aviation data. They offer flight schedules, status, analytics and consultancy. Formerly known as FlightGlobal and Flightview. Strong in MRO and airline analytics.
+COMPETITOR OVERVIEW:
+Cirium is OAG's primary competitor in aviation data and analytics, backed by RELX Group. They deliver aviation intelligence spanning flight schedules, fleet data, on-time performance analytics, emissions reporting, and flight status tracking to airlines, airports, and travel companies globally. Cirium serves 900+ airlines with particularly strong market presence in North America through their DIIO Mi analytics platform. Recent innovation focuses on operational use cases, building on their strength in fleet and aircraft data.
 
-THEIR STRENGTHS:
-- Strong brand recognition from FlightGlobal heritage
-- Broad consultancy and analytics offering
-- Good MRO data
-- Sky Suite analytics platform
-- Strong relationships with airlines and airports
+OAG COMPETITIVE POSITIONING (shareable with customers):
+OAG stands out for its data freshness and platform completeness, processing significantly more schedule updates than Cirium and refreshing data every 15 minutes. OAG is also the only provider able to combine schedules, real-time status, and airline-sourced pricing in a single platform — a capability Cirium cannot replicate. OAG processes 400k+ schedule updates per day (instance view) vs Cirium's 280k (effective view), with 15-minute product refreshes and up to 24 months of forward-looking schedules vs Cirium's 12 months.
 
-THEIR WEAKNESSES:
-- Schedule data quality lags OAG — OAG is the original source for IATA schedules
-- Less granular real-time flight status vs OAG
-- Seats data coverage is weaker than OAG
-- Higher price point for comparable data
-- More complex / slower to integrate
-- Support can be slow; large corporate structure
-- No direct Snowflake integration as seamless as OAG Data Direct
+WHY OAG IS BETTER THAN CIRIUM:
+1. COMPREHENSIVE PRICING INTELLIGENCE: OAG offers the highest quality pricing dataset through Infare's unique give-to-get model. Cirium has no comprehensive pricing proposition — a critical gap for airlines needing integrated schedules + fares.
+2. UNIFIED SCHEDULES + STATUS: OAG uniquely combines schedules and status for complete flight lifecycle visibility. Cirium cannot easily join these datasets, creating fragmentation.
+3. SUPERIOR DATA FRESHNESS: OAG processes 400k+ daily schedule changes (vs Cirium's 280k) with 15-minute updates and 24-month forward schedules (vs Cirium's 12 months).
+4. SIMPLIFIED UNIFIED API: OAG offers a single Flight Info API plus Alerts. Cirium runs fragmented API families (FlightStats/Flex vs Sky) with different auth, SDKs, and docs.
+5. GOLD-STANDARD REPUTATION: OAG's 90+ years of heritage and IATA partnership cement our reputation as the industry's most trusted schedules provider.
+6. CLOUD-FIRST PLATFORM: Fast onboarding 24-48 hours vs Cirium's 6-8 weeks (Snowflake/AWS onboarding).
+7. BROADEST PORTFOLIO: OAG uniquely combines supply, demand, and pricing datasets. No competitor matches this breadth for commercial analysis.
 
-OAG ADVANTAGES vs CIRIUM:
-- OAG is the IATA-designated data aggregator — our schedules are the authoritative source
-- OAG Data Direct (Snowflake) delivers data faster and more easily than Cirium's delivery
-- OAG Flight Status refreshes up to every 1 minute vs Cirium's less frequent updates
-- OAG Seats data is more comprehensive with better predicted seat counts
-- OAG has broader historical schedules data (back to 1996 via Schedules Analyser)
-- OAG is more agile and easier to work with as a partner
-- OAG pricing is more competitive for equivalent coverage
+OAG STRENGTHS vs CIRIUM:
+- Only provider with schedules + demand + pricing (Cirium has no pricing)
+- Unified schedules + status tracking — single view from schedule publish to touchdown (Cirium cannot do this)
+- Fast cloud deployment: 24-48 hours vs Cirium's 6-8 weeks
+- 1,500+ customers across 10+ verticals
 
-KEY OBJECTIONS & RESPONSES:
-- "We already use Cirium": Ask what specific data they use — OAG likely covers it at higher quality or lower cost. Offer a data comparison.
-- "Cirium has more analytics tools": OAG Analytics suite (Schedules, Connections, Traffic, Market Trends Analysers) covers the core use cases. And OAG data can plug into any BI tool.
-- "Cirium is a bigger company": OAG has been the aviation data authority since 1929 — we're not a startup. IATA chose OAG as the official schedule aggregator.
+OAG GAPS/WEAKNESSES:
+- Status data gaps: Incomplete gate info — departure gate coverage 56% vs Cirium's 69%
+- Emissions accuracy: Not audited; behind Cirium's >99% ISAE 3000-certified model
+- Analytics UI: Analyser has legacy tech issues; modernisation in progress
 
-WIN THEMES:
-- Data quality and authority (IATA-designated)
-- Speed and freshness of data delivery
-- Ease of integration (Snowflake / API)
-- Better value for equivalent coverage
+CIRIUM STRENGTHS:
+- Fleet valuations & aviation finance consultancy — strongest in market
+- Strong in NAM airports — DIIO Mi deeply embedded in North America, high switching costs
+- Superior gate data coverage (69% vs OAG's 56%)
+- 49% share of voice in aviation, finance, ESG and AI data market
+- Key partnerships: Aireon (satellite ADS-B), FlightRadar24, Travelport MIDT (exclusive booking data)
+
+CIRIUM WEAKNESSES:
+- No pricing data — cannot serve airline revenue management teams; major competitive gap
+- Separated schedules & status data — products don't integrate; complex API ecosystem
+- Slower cloud evolution — limited cloud platform traction; focus on legacy SSIM/flat files
+- 6-8 weeks cloud onboarding vs OAG's 24-48 hours
+
+STATUS DATA BAKE-OFF — OAG vs CIRIUM (39,042 flights, Jan-Feb 2026 independent trial):
+OAG beat Cirium in 9 of 11 key metrics:
+- 9.3 minutes faster detecting arrival time changes
+- 22.2 minutes faster on gate assignments
+- 12× more likely to detect runway touchdown first (59% vs 5%)
+- 1-2 minutes more accurate on time predictions across all forecast horizons
+- 5 distinct flight states vs Cirium's 3 (Cirium doesn't even offer InGate status)
+- OAG delivers arrival estimate corrections first 67% of the time
+- OAG delivers departure gate information first 67% of the time
+- 865 data sources vs Cirium's 600
+Where Cirium leads: departure gate coverage 69% vs OAG's 56%
+
+TALK TRACKS — WHY WE WIN:
+
+1. PRICING DATA NEED:
+"I understand you're evaluating Cirium. They're strong on the operational side — fleet data, emissions — but when it comes to pricing intelligence, there's really no comparison. Cirium doesn't have a fare data proposition. If you need to understand competitive fares, pricing trends, or do revenue management analysis, you'll need to source that elsewhere. With our Infare acquisition, we give you schedules AND the most comprehensive fare intelligence in the market — all in one place."
+
+2. UNIFIED FLIGHT LIFECYCLE (schedules + status):
+"One thing that consistently comes up with Cirium customers is the challenge of joining their schedules and status data. They run separate API families — FlightStats for status, Cirium Sky for schedules — with different authentication, different SDKs, different documentation. It's a real integration headache. With OAG, you get one API, one authentication model, one data structure that covers the entire flight lifecycle. You can track a flight from the moment it's scheduled all the way through to touchdown and gate arrival. We call it 'publish to touchdown' visibility, and Cirium simply can't match that unified experience."
+
+3. CLOUD-NATIVE BUYERS:
+"If you're working in a modern data stack with Snowflake or cloud-based analytics, the difference is night and day. Cirium takes 6-8 weeks to onboard. We get you up and running in 24-48 hours. They're still deeply tied to legacy SSIM flat files. We're cloud-native by design. We push 400,000 schedule updates per day, every 15 minutes. Cirium does 280,000 per day. If you're building products or making decisions that need fresh data fast, we're the only real choice."
+
+4. DATA RELIABILITY:
+"When we ran a head-to-head comparison on 39,000 flights, OAG was consistently faster and more accurate on the metrics that matter for real-time decisions — detecting flight changes, delivering gate updates, estimating arrival times. It's not that Cirium's data is bad — it's that when milliseconds or minutes matter, OAG has the edge. And for mission-critical applications, that edge is everything."
+
+OVERALL COMPETITIVE RESPONSE:
+"While Cirium has legitimate strengths — fleet valuations, aviation finance advisory, strong North America coverage with DIIO Mi, and better gate data coverage — it doesn't tell the full story. In a bake-off of 39,042 flights, OAG beat Cirium in 9 of 11 status metrics — we're 9.3 minutes faster on arrival changes, 22.2 minutes faster on gates, 12× more likely to detect touchdown first. More critically: Cirium has no pricing data, their schedules and status don't integrate, and they're focused on legacy SSIM/flat files. OAG is the only provider offering schedules + demand + pricing unified in one platform, with true schedule-to-touchdown tracking and 24-48 hour cloud deployment versus their 6-8 weeks."
+
+TALK TRACKS — WHY WE LOSE:
+
+STATUS DATA QUALITY CONCERNS:
+"While Cirium's gate data coverage may be better than ours, it doesn't tell the full story. We recently ran head-to-head testing, and OAG won 9 out of 11 metrics. We're 12 times faster at detecting landings, we deliver arrival updates 9 minutes faster, and when we do have gate data, we deliver it 22 minutes faster. Our coverage is 56% versus their 69% — so yes, they have more gates. But we have 865 data sources to their 600, and our estimates are 1-2 minutes more accurate across the board. So here's the real question: do you need gate data for 13% more flights, or do you need faster, more accurate status updates for everything else?"
+
+FLEET/VALUATIONS PRIORITY:
+"I understand fleet data is a priority for you. You're right that Cirium has built a strong reputation in this area. Here's what I'd encourage you to consider: what percentage of your use cases actually require deep fleet data versus schedule, capacity, and connectivity intelligence? We partner with ch-aviation for fleet data, which covers the core fleet intelligence most commercial teams need. If fleet valuations are absolutely central to your business, Cirium may be the better fit for that specific use case. But if you're making network planning, scheduling, or commercial strategy decisions, our schedule accuracy and coverage will likely drive more value."
+
+ESG/EMISSIONS REPORTING:
+"Right now, Cirium is ahead of us in this area with their certified emissions data. That said, where we do excel is in the commercial intelligence that helps you make business decisions about which routes to fly, which markets to enter, and how to optimise your network. Some organisations use OAG for commercial planning and supplement with specialised ESG tools for compliance reporting. Would that kind of approach work for your organisation, or is having everything in one platform non-negotiable?"
+
+NAM AIRPORT ANALYTICS (DIIO Mi):
+"DIIO Mi has been the standard for North American airports for years, and switching costs are real. You've got trained staff, historical reports, and workflows built around it. But here's what I'd ask you to consider: what's the cost of staying with the status quo? Are there pain points with your current setup — the user experience, the time to get insights, platform flexibility, or pricing trajectory? What are the biggest limitations you're facing with your current setup?"
+
+PROOF POINTS:
+- Air India chose OAG over Cirium for Flight Info Alerts and Schedules Data: "OAG was more accurate than Cirium because when the aircraft departs or arrives, the actual time is updated in OAG's database more accurately."
+- Independent trial: OAG detected arrival time changes 9 minutes faster on average
+- 47.8% of flights had gate information 30+ minutes earlier from OAG
+- Blue Skies Consulting chose OAG over Cirium for Traffic Analyser: "provided the best value for the data they required"
 """,
 
     "RateGain": """
