@@ -179,7 +179,7 @@ Keep everything concise, direct and usable in a real sales conversation. No fluf
         try:
             import google.generativeai as genai
             genai.configure(api_key=GEMINI_API_KEY)
-            model = genai.GenerativeModel("gemini-2.0-flash")
+            model = genai.GenerativeModel("gemini-1.5-flash-latest")
             response = model.generate_content(prompt)
             return jsonify({"result": response.text})
         except Exception as e:
