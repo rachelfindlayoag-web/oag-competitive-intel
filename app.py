@@ -177,10 +177,12 @@ One confident, natural opening line the rep could use to position OAG vs {compet
 Keep everything concise, direct and usable in a real sales conversation. No fluff."""
 
         try:
-            import google.generativeai as genai
-            genai.configure(api_key=GEMINI_API_KEY)
-            model = genai.GenerativeModel("gemini-1.5-flash-latest")
-            response = model.generate_content(prompt)
+            from google import genai
+            client = genai.Client(api_key=GEMINI_API_KEY)
+            response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=prompt
+            )
             return jsonify({"result": response.text})
         except Exception as e:
             return jsonify({"error": str(e)}), 500
