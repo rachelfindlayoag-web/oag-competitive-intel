@@ -482,12 +482,29 @@
       show('loading-state');
       document.getElementById('copy-btn').style.display = 'none';
 
-      try {
-        const res  = await fetch('/api/pitch', {
+      const payload = JSON.stringify({ competitor: selectedComp, products, customer, customer_type, context });
+
+      const attemptFetch = async () => {
+        const res = await fetch('/api/pitch', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ competitor: selectedComp, products, customer, customer_type, context })
+          body: payload,
+          signal: AbortSignal.timeout(90000)
         });
+        return res;
+      };
+
+      try {
+        let res;
+        try {
+          res = await attemptFetch();
+        } catch (e) {
+          // First attempt failed (likely cold start) — wait and retry once
+          document.querySelector('#loading-state p').textContent = 'Waking up server, retrying…';
+          await new Promise(r => setTimeout(r, 8000));
+          res = await attemptFetch();
+        }
+
         const data = await res.json();
 
         if (data.error) {
@@ -501,11 +518,12 @@
           saveState();
         }
       } catch (e) {
-        document.getElementById('error-box').textContent = 'Could not reach the server. Please try again.';
+        document.getElementById('error-box').textContent = 'The server is still waking up — please wait 15 seconds and try again.';
         show('error-box');
       } finally {
         btn.disabled = false;
         btn.textContent = '⚡ Generate talking points';
+        document.querySelector('#loading-state p').textContent = 'Generating your pitch brief…';
       }
     }
 
