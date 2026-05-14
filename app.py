@@ -114,10 +114,11 @@ def create_app():
             return jsonify({"error": "GROQ_API_KEY not configured. Please add it in Render environment variables."}), 500
 
         data = request.json or {}
-        competitor  = data.get("competitor", "")
-        products    = data.get("products", [])
-        customer    = data.get("customer", "")
-        context     = data.get("context", "")
+        competitor    = data.get("competitor", "")
+        products      = data.get("products", [])
+        customer      = data.get("customer", "")
+        customer_type = data.get("customer_type", "")
+        context       = data.get("context", "")
 
         from battlecards import BATTLECARDS, OAG_OVERVIEW
 
@@ -140,9 +141,35 @@ def create_app():
 
         products_str = ", ".join(products) if products else "General OAG data products"
 
+        customer_line = ""
+        if customer and customer_type:
+            customer_line = f"{customer} ({customer_type})"
+        elif customer:
+            customer_line = customer
+        elif customer_type:
+            customer_line = customer_type
+        else:
+            customer_line = "Not specified"
+
+        customer_guidance = ""
+        if customer_type == "Low-Cost Carrier (LCC)":
+            customer_guidance = "This is a Low-Cost Carrier — they are extremely cost-sensitive, hate complexity, and will push hard on price. Lead with ROI and simplicity. Don't oversell features they won't use."
+        elif customer_type == "Legacy / Full-Service Carrier":
+            customer_guidance = "This is a legacy full-service carrier — they have complex multi-market needs, long procurement cycles, and strong internal politics. Emphasise reliability, breadth of data, long-term partnership, and enterprise scale."
+        elif customer_type == "Airport":
+            customer_guidance = "This is an airport — their priorities are operational efficiency, passenger flow, airline relations, and slot management. Focus on schedule accuracy, connectivity data, and real-time status."
+        elif customer_type == "Travel Technology / OTA":
+            customer_guidance = "This is a travel tech company or OTA — they need reliable, fast API data they can build products on. Emphasise API quality, uptime, ease of integration, and data freshness."
+        elif customer_type == "Airline Revenue Management":
+            customer_guidance = "This contact is in airline revenue management — pricing accuracy, data freshness, and competitive fare intelligence are everything. Lead with OAG's give-to-get pricing model and data quality stats."
+        elif customer_type == "Aviation Finance / Leasing":
+            customer_guidance = "This is an aviation finance or leasing company — fleet data, historical records, and long-term trend data matter most. Be honest about where Cirium leads on fleet valuations but emphasise OAG's broader commercial intelligence."
+        elif customer_type == "Consultancy / Research":
+            customer_guidance = "This is a consultancy or research firm — they need comprehensive, accurate historical data and breadth of coverage. Lead with OAG's historical depth, global coverage, and data authority."
+
         prompt = f"""You are an expert sales coach at OAG Aviation, the world's leading aviation data company.
 
-A sales rep is preparing for a competitive deal and needs sharp, confident talking points.
+A sales rep is preparing for a competitive deal and needs a sharp, tailored brief they can use in the next 30 minutes.
 
 === OAG CONTEXT ===
 {OAG_OVERVIEW}
@@ -154,27 +181,32 @@ A sales rep is preparing for a competitive deal and needs sharp, confident talki
 {recent_intel}
 
 === THIS DEAL ===
-Customer / Prospect: {customer if customer else 'Not specified'}
+Customer / Prospect: {customer_line}
+{f"Customer profile: {customer_guidance}" if customer_guidance else ""}
 Additional context: {context if context else 'None provided'}
 OAG Products being pitched: {products_str}
 Competitor they are up against: {competitor}
 
 === YOUR TASK ===
-Generate a concise, punchy sales brief for this rep. Structure it as:
+Generate a concise, punchy sales brief SPECIFICALLY tailored to this customer and situation.
+{"IMPORTANT: " + customer_guidance if customer_guidance else ""}
+{"IMPORTANT: Address this specific customer — " + customer + " — by name where relevant." if customer else ""}
+
+Structure it as:
 
 **Why OAG wins this deal**
-3-4 bullet points on OAG's strongest advantages against {competitor} for the products being pitched.
+3-4 bullet points on OAG's strongest advantages against {competitor} for the products being pitched — tailored to what matters most to this specific customer type.
 
 **Watch out for**
-2-3 likely objections the prospect might raise (based on {competitor}'s pitch) and a sharp one-line response to each.
+2-3 likely objections THIS prospect will raise (based on their profile and {competitor}'s pitch), with a sharp one-line response to each.
 
 **Recent intel to drop**
-1-2 bullet points referencing the most relevant recent {competitor} news the rep can use to show they've done their homework.
+1-2 bullet points on the most relevant recent {competitor} news the rep can use to show they've done their homework.
 
 **Opening line**
-One confident, natural opening line the rep could use to position OAG vs {competitor} in the first 2 minutes of the call.
+One confident, natural opening line tailored to this specific customer and their likely priorities.
 
-Keep everything concise, direct and usable in a real sales conversation. No fluff."""
+Keep everything concise, direct and usable in a real sales conversation. No fluff. Make it feel written for THIS deal, not a generic template."""
 
         try:
             import requests as http_req
