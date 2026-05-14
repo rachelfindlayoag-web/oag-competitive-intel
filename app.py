@@ -93,6 +93,11 @@ def create_app():
     @app.route("/")
     @login_required
     def dashboard():
+        return redirect(url_for("pitch"))
+
+    @app.route("/feed")
+    @login_required
+    def feed():
         return render_template("index.html")
 
     @app.route("/playbook")
