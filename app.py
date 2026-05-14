@@ -185,7 +185,7 @@ Keep everything concise, direct and usable in a real sales conversation. No fluf
                     "Content-Type": "application/json"
                 },
                 json={
-                    "model": "llama-3.1-8b-instant",
+                    "model": "gemma2-9b-it",
                     "messages": [{"role": "user", "content": prompt}],
                     "max_tokens": 2048
                 },
