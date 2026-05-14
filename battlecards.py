@@ -347,6 +347,183 @@ PERCEPTION OF INNOVATION:
 ATPCO ECOSYSTEM ADVANTAGE:
 "The ATPCO connection is real — if you're already using multiple ATPCO products, the idea of an integrated ecosystem is attractive. What I'd point out is that since the December 2023 acquisition, we haven't seen concrete evidence of that integration materialising. Just make sure you ask them for specific timelines and customer references who've successfully implemented since the acquisition."
 """,
+
+    "IATA SDEP": """
+IATA SDEP BATTLECARD
+
+WHAT IT IS:
+IATA SDEP is an industry governance initiative launched August 2025 — not a commercial product. It is an industry-owned, airline-governed schedule and MCT database. Free give-to-get model: airlines share their schedules and receive the combined database back. Delivers global SSIM files, flat files, or cloud-native tables via SFTP. IATA explicitly positions it as "an industry initiative, not a commercial solution."
+
+KEY FACTS:
+- 150+ airlines already signed including BA, Lufthansa, Emirates, Air India, Turkish, Qantas, Delta, United
+- Free to participating airlines
+- No analytics layer, no real-time status, no pricing, no demand data, no visualisation tools
+- Static file distribution — no 15-minute refresh cycle
+- No cloud querying capability
+- Basic raw SSIM/flat file output only
+
+STRATEGIC NOTE — INTERNAL:
+SDEP participation does NOT mean airlines are leaving OAG. Many SDEP members are existing OAG customers. The risk is long-term to OAG's schedule supply relationships and pricing leverage — not an immediate threat to analytics, status, or pricing products. Flag to Mo, Maria, Jade, Seth or Seb before any call where IATA SDEP comes up in a live deal.
+
+OAG ADVANTAGES vs IATA SDEP:
+- Full commercial analytics platform vs raw file delivery
+- Real-time status tracking (5 states, 865 sources) — SDEP has none
+- Pricing and demand data — SDEP has none
+- Cloud delivery with analytics tools (Analyser suite, APIs) — SDEP has none
+- 90+ years of quality assurance and processing depth
+- 24-month forward schedules with 15-minute refresh vs basic SSIM output
+- Visualisation tools and query capability — SDEP has none
+- OAG defined the SSIM format that SDEP is built on
+
+OVERALL POSITIONING:
+"IATA's SDEP is an industry governance initiative, not a commercial analytics platform. It gives airlines a free backup for raw schedule data, but it has no status, no demand, no pricing, no analytics layer, and no operational intelligence. OAG is what airlines need when they want to actually do something with the data."
+
+TALK TRACK — WHEN SDEP COMES UP IN A DEAL:
+"IATA's initiative is a sensible industry governance move and we fully support airlines having more control over their data. But SDEP gives you an aggregated, airline-contributed schedule file for free — it is a raw data backup with basic output formats. It has no real-time status, no pricing intelligence, no demand data, no analytics tooling, and no cloud querying capability. OAG takes schedule data and combines it with status, pricing, and demand to give you a decision-ready intelligence layer."
+
+KEY OBJECTIONS & RESPONSES:
+- "IATA is giving this away for free": Clarify what free means — raw schedule files as backup, not a product. No analytics, no status, no pricing, no query tools.
+- "We want to reduce dependence on data aggregators": Aggregator dependence and commercial intelligence are different things. OAG enriches, validates, and delivers actionable intelligence at depth and speed SDEP doesn't match.
+- "IATA has airline governance — that matters to us": OAG has formal IATA partnership and processes data to IATA's standards. OAG defined the SSIM format SDEP is built on. Relationship is collaborative, not competitive.
+- "We are already signed up to SDEP": SDEP and OAG solve different problems. SDEP gives raw schedule backup. OAG gives intelligence layer on top. Most airlines will use both — not mutually exclusive.
+""",
+
+    "FlightAware": """
+FLIGHTAWARE BATTLECARD
+
+COMPETITOR OVERVIEW:
+FlightAware is one of the world's largest ADS-B receiver networks (41,000+ receivers) for real-time operational tracking. Well established in TravelTech for status API feeds. Backed by Collins Aerospace / RTX — strong enterprise and MRO credibility. Operational tracking focus only; no commercial intelligence capabilities.
+
+THEIR STRENGTHS:
+- 41,000+ ADS-B receivers — one of world's largest tracking networks
+- Foresight predictive ETAs using ML — strong for operational use cases
+- Backed by Collins Aerospace / RTX — enterprise and MRO credibility
+- Well established in TravelTech for status API feeds
+- Strong positional tracking capability
+
+THEIR WEAKNESSES:
+- No commercial intelligence stack whatsoever
+- No schedules data
+- No pricing data
+- No demand data
+- Cannot support any decision involving scheduling, pricing, demand, or capacity
+- Operational tracking only
+
+OAG ADVANTAGES vs FLIGHTAWARE:
+- Full commercial intelligence stack — schedules, demand, pricing, status
+- 5 distinct flight states vs operational tracking only
+- 24-month forward-looking schedules
+- Pricing and demand data completely absent from FlightAware
+- Complete flight lifecycle from schedule publish to touchdown
+
+OVERALL POSITIONING:
+"FlightAware tells you where a plane is. OAG tells you what was planned, what changed, what it means commercially, and what is coming next. If the use case is operational tracking only, FlightAware is credible. The moment a decision involves scheduling, pricing, demand, or capacity — they cannot help."
+
+TALK TRACK — WHEN FLIGHTAWARE IS ALREADY IN THE STACK:
+"FlightAware does positional tracking well — that is a different job to what OAG does. We are the commercial intelligence layer. We tell you what was scheduled, what changed, what the demand picture looks like, what competitors are charging. FlightAware tells you where a plane is right now. Both can co-exist in the same data stack because they answer completely different questions."
+
+KEY OBJECTIONS & RESPONSES:
+- "We already use FlightAware for status": Don't fight the status relationship. Ask if they also get schedule intelligence, capacity analysis, or pricing. OAG sits alongside FlightAware for commercial use cases without displacing what they do operationally.
+- "We need real-time positional data": If positional tracking is the primary need, FlightAware's network is impressive. Ask what decisions are being made with that data. For anything commercial (network planning, revenue management, competitive analysis) OAG is where value sits.
+
+NOTE: FlightAware and OAG are largely complementary — FlightAware handles operational/positional tracking, OAG handles commercial intelligence. This is typically not a win/lose situation but a co-existence pitch.
+""",
+
+    "Flightradar24": """
+FLIGHTRADAR24 BATTLECARD
+
+COMPETITOR OVERVIEW:
+Flightradar24 is a consumer product making an enterprise push. Enormous brand recognition (100M+ app downloads, 50,000+ ADS-B receivers — world's largest positional network) but very shallow B2B data depth. Swedish company. NOTE: Swedish privacy regulator issued a reprimand in 2025 — flag this for enterprise procurement teams.
+
+THEIR STRENGTHS:
+- 50,000+ ADS-B receivers — world's largest positional network
+- 100M+ app downloads — massive consumer brand recognition
+- Very low price point for positional tracking data
+- Strong consumer brand in aviation — everyone knows it
+
+THEIR WEAKNESSES:
+- No schedules data
+- No commercial intelligence
+- No pricing data
+- No demand data
+- Shallow B2B data depth despite consumer brand
+- No enterprise analytics capabilities
+- Swedish privacy regulator reprimand in 2025 — flag for enterprise procurement
+- Consumer product trying to cross over to enterprise — not built for B2B scale
+
+OAG ADVANTAGES vs FLIGHTRADAR24:
+- Every commercial intelligence dimension — schedules, demand, pricing
+- Enterprise depth and IATA authority
+- 90+ years of operational trust in aviation-critical decisions
+- Privacy-compliant data model — no regulator issues
+- Built for enterprise from the ground up, not retrofitted from consumer
+
+OVERALL POSITIONING:
+"Flightradar24 is a consumer product making an enterprise push. Enormous brand recognition but shallow B2B data depth. No schedules, no commercial intelligence, no pricing, no demand. Where they appear in deals it is almost always for positional tracking — not for the decisions OAG enables."
+
+TALK TRACK — WHEN FLIGHTRADAR24 COMES UP:
+"Flightradar24's consumer brand is extraordinary — 100 million downloads and everyone in aviation has used the app. But enterprise data depth is a different conversation from consumer reach. They have no schedules intelligence, no commercial analytics, no pricing or demand data. If the requirement is knowing where planes are right now, they are an option. If the requirement is understanding markets, planning networks, managing revenue — that is OAG's space entirely."
+
+KEY OBJECTIONS & RESPONSES:
+- "Everyone knows Flightradar24": Consumer brand is huge, but enterprise data depth is different from consumer recognition. B2B offering is very thin.
+- "They are much cheaper for tracking": For pure positional tracking, yes. But tracking tells you where a plane is — it doesn't tell you what to do about it commercially.
+- "They have more ADS-B coverage": 50,000 receivers vs OAG's 865 sources — but OAG's sources are curated for commercial intelligence. Coverage volume for positional tracking is a different metric from data quality for operational decision-making.
+
+PRIVACY FLAG: Swedish Data Protection Authority issued a reprimand to Flightradar24 in 2025. Worth raising in enterprise procurement conversations that have compliance/regulatory requirements.
+""",
+
+    "Amadeus / ForwardKeys": """
+AMADEUS / FORWARDKEYS BATTLECARD
+
+COMPETITOR OVERVIEW:
+Amadeus is the world's largest travel technology platform — but they are a GDS and booking infrastructure company first, a data intelligence company second. Acquired ForwardKeys in May 2025 for $17.4M (ForwardKeys had $10.4M revenue in 2023). Integration is still early stage as of mid-2026. INTERNAL CLASSIFICATION: High overlap / High execution capability — flag to Mo, Maria, Jade, Seth or Seb before any call where Amadeus is named.
+
+THEIR STRENGTHS:
+- Bookings / MIDT data: one of strongest demand datasets in market
+- Distribution reach: embedded in 90%+ of global airline and airport commercial operations
+- Multi-cloud delivery: Azure + Google Cloud + Snowflake
+- AI capability: Microsoft partnership, AI embedded across platform at enterprise scale
+- Analytics UI: Amadeus Advisor rated significantly stronger than OAG Analyser
+- ForwardKeys: 17M+ air bookings processed daily, predictive demand signals
+- Enormous brand and ecosystem pull — very high switching costs
+- Scale and resources to develop fast
+
+THEIR WEAKNESSES:
+- Schedules: only partial coverage — not gold standard
+- Real-time flight status: no standalone status product vs OAG's 5 states, 865 sources
+- Pricing intelligence: MIDT is indirect channel only vs OAG's 86% airline-direct give-to-get
+- NOT neutral: also the booking infrastructure airlines commercially depend on — conflict of interest risk
+- ForwardKeys was built for destinations/tourism boards, not airline commercial teams
+- ForwardKeys integration still developing — not yet proven as combined product
+- Generalist travel tech platform, not specialist aviation intelligence
+
+OAG ADVANTAGES vs AMADEUS:
+- Schedules gold standard — OAG is IATA-designated, Amadeus is only partial coverage
+- Flight status — OAG 5 states, 865 sources; Amadeus has no standalone status product
+- Pricing intelligence — OAG 86% airline-direct vs Amadeus MIDT indirect channel only
+- Independence and neutrality — OAG has no commercial stake in how airlines distribute or sell
+- Specialist focus — OAG is aviation data only; Amadeus serves hotels, agencies, rail, payments too
+- Faster onboarding — OAG 24-48 hours Snowflake
+- ForwardKeys very new to Amadeus (May 2025) — integration unproven
+
+OVERALL POSITIONING:
+"Amadeus is the world's largest travel technology platform — but they are a GDS and booking infrastructure company first, a data intelligence company second. Their schedules are partial, their pricing is indirect MIDT data, and ForwardKeys only joined them in May 2025. OAG is the specialist. When an airline or airport wants the best commercial intelligence, they come to OAG — not to their booking system provider."
+
+FULL TALK TRACK:
+"Amadeus is an extraordinary technology company. But their travel intelligence products are one part of a much larger business that serves hotels, agencies, rail, and payments alongside airlines. OAG is focused exclusively on aviation data intelligence. Our schedules are the industry gold standard, our pricing data is the most airline-direct in the market, and we connect schedules, status, demand, and pricing in a way no other single provider can. The question is not whether Amadeus is a good company — it is whether a generalist travel tech platform or a specialist aviation data partner gives you the sharpest commercial intelligence."
+
+KEY OBJECTIONS & RESPONSES:
+- "We already use Amadeus for our PSS": Ecosystem pull is real — don't fight it directly. "OAG has no commercial relationship with how you distribute or sell — we are purely focused on giving you the most accurate data. For decisions you want an independent view on, that neutrality has real value."
+- "Amadeus has ForwardKeys now": Integration is very new (May 2025). ForwardKeys was built for destinations and tourism boards, not airline commercial teams. ForwardKeys is strong on where people are travelling; OAG is strong on market dynamics and costs. Ask to see a proven customer case study using the combined product.
+- "Their MIDT data is the best demand dataset": Acknowledge it — MIDT is one of the strongest booking datasets in market. But OAG wins by combining demand with best-in-market schedules, pricing, and status — complete commercial intelligence picture vs one strong dataset in isolation.
+- "Their AI and analytics tools are more advanced": Be honest — their UI and AI capability is ahead of OAG today. But AI insights are only as good as the underlying data. OAG schedules and pricing quality is stronger. Better data with a developing AI layer vs advanced AI on partial data — which serves decisions better?
+
+PROOF POINTS:
+- Amadeus acquired ForwardKeys May 2025 for $17.4M
+- ForwardKeys revenue was $10.4M in 2023
+- Integration still developing mid-2026
+- OAG internal rating: Amadeus Low on scheduling data quality, High on bookings, High on analytics UI, High on GTM
+""",
 }
 
 OAG_OVERVIEW = """
