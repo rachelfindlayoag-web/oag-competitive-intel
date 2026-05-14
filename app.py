@@ -176,9 +176,6 @@ def create_app():
 
 A sales rep is preparing for a competitive deal and needs a sharp, tailored brief they can use in the next 30 minutes.
 
-=== OAG CONTEXT ===
-{OAG_OVERVIEW}
-
 === COMPETITOR BATTLECARD: {competitor} ===
 {battlecard}
 
@@ -222,7 +219,7 @@ Keep everything concise, direct and usable in a real sales conversation. No fluf
                     "Content-Type": "application/json"
                 },
                 json={
-                    "model": "gemma2-9b-it",
+                    "model": "llama-3.3-70b-versatile",
                     "messages": [{"role": "user", "content": prompt}],
                     "max_tokens": 2048
                 },
