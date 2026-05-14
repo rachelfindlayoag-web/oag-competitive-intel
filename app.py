@@ -8,7 +8,7 @@ from functools import wraps
 from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 from apscheduler.schedulers.background import BackgroundScheduler
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
 
 DB_PATH = os.environ.get("DB_PATH", os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.db"))
 DASHBOARD_PASSWORD = os.environ.get("DASHBOARD_PASSWORD", "oag-intel-2026").strip()
@@ -110,8 +110,8 @@ def create_app():
     @app.route("/api/pitch", methods=["POST"])
     @login_required
     def generate_pitch():
-        if not GEMINI_API_KEY:
-            return jsonify({"error": "GEMINI_API_KEY not configured. Please add it in Render environment variables."}), 500
+        if not GROQ_API_KEY:
+            return jsonify({"error": "GROQ_API_KEY not configured. Please add it in Render environment variables."}), 500
 
         data = request.json or {}
         competitor  = data.get("competitor", "")
@@ -178,18 +178,23 @@ Keep everything concise, direct and usable in a real sales conversation. No fluf
 
         try:
             import requests as http_req
-            url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
             resp = http_req.post(
-                url,
-                params={"key": GEMINI_API_KEY},
-                json={"contents": [{"parts": [{"text": prompt}]}],
-                      "generationConfig": {"maxOutputTokens": 2048}},
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {GROQ_API_KEY}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": "llama-3.1-8b-instant",
+                    "messages": [{"role": "user", "content": prompt}],
+                    "max_tokens": 2048
+                },
                 timeout=30
             )
             if not resp.ok:
                 msg = resp.json().get("error", {}).get("message", resp.text)
                 return jsonify({"error": msg}), 500
-            result = resp.json()["candidates"][0]["content"]["parts"][0]["text"]
+            result = resp.json()["choices"][0]["message"]["content"]
             return jsonify({"result": result})
         except Exception as e:
             return jsonify({"error": str(e)}), 500
